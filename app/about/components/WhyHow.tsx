@@ -5,9 +5,9 @@ import HowWeWork from "./HowWeWork";
 import { colors } from "./colors";
 
 export default function WhyHow() {
-    return (
-        <>
-            <style>{`
+  return (
+    <>
+      <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
 
         .wh-root * { box-sizing: border-box; }
@@ -359,11 +359,11 @@ export default function WhyHow() {
         }
       `}</style>
 
-            <div className="wh-root">
-                <HowWeWork />
-                <div className="wh-divider" />
-                <WhyChooseUs />
-            </div>
-        </>
-    );
+      <div className="wh-root">
+        <WhyChooseUs />
+        <div className="wh-divider" />
+        <HowWeWork />
+      </div>
+    </>
+  );
 }

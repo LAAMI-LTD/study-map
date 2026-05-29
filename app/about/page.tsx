@@ -8,6 +8,7 @@ import MissionValues from "./components/MissionValues";
 import WhyHow from "./components/WhyHow";
 import { colors } from "./components/colors";
 import DirectorsMessage from "./components/directors";
+import MapsSection from "../components/map";
 
 export default function About() {
   const fadeUp: Variants = {
@@ -52,7 +53,7 @@ export default function About() {
     >
       <div className="relative w-full z-30">
         <AboutHeader />
-        <MissionValues />
+        {/* <MissionValues /> */}
         <WhyHow />
         <AboutCTA />
         <DirectorsMessage />
@@ -64,6 +65,7 @@ export default function About() {
         />
       </div>
 
+      <MapsSection />
       <style jsx>{`
         .stroke-text {
           -webkit-text-stroke-width: 2px;
