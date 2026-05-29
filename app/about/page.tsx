@@ -1,5 +1,4 @@
 "use client";
-"use client";
 
 import { motion, Variants } from "framer-motion";
 import AboutCTA from "./components/AboutCTA";
@@ -45,12 +44,13 @@ export default function About() {
       transition: { duration: 0.7, ease: "easeOut" },
     },
   };
+  
   return (
     <section
-      className="relative min-h-screen flex items-center justify-start px-1 overflow-hidden pt-[120px] md:pt-0"
+      className="relative min-h-screen flex flex-col overflow-hidden md:pt-0"
       style={{ backgroundColor: colors.white }}
     >
-      <div className="relative w-full z-30 mt-[35vh] lg:mt-0">
+      <div className="relative w-full z-30">
         <AboutHeader />
         <MissionValues />
         <WhyHow />

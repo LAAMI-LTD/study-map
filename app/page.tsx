@@ -7,6 +7,8 @@ import WhyChooseUs from "./components/why";
 import Services from "./components/services";
 import AnimatedBackground from "./components/animatedbg";
 import CTASection from "./about/components/CTASection";
+import MissionValues from "./about/components/MissionValues";
+import MapsSection from "./components/map";
 
 export const dynamic = "force-static";
 
@@ -63,6 +65,16 @@ export default function Home() {
         </div>
       </motion.section>
 
+      <motion.section
+        className="relative py-8 overflow-hidden"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+        variants={fadeUp}
+      >
+        <MissionValues />
+      </motion.section>
+
       {/* ── Services Grid ── mid-tone palette background */}
       <motion.section
         className="relative overflow-hidden"
@@ -99,6 +111,7 @@ export default function Home() {
         imageVariants={imageVariants}
         contentVariants={contentVariants}
       />
+      <MapsSection />
     </main>
   );
 }

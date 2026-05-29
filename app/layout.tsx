@@ -9,6 +9,10 @@ const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
+{/* city : https://youtu.be/Ot0NANnFFaM?list=PL5POt7v8GG2Xehz7FrdTODu90qocBZ7R2
+                        blue : https://youtu.be/-3HFs3Qu7Mc?list=PL4jjgxHdfmYYYQgeYoTsRQk4jOvIJHhm6
+                        blue boxes : https://youtu.be/fBMAfyqPsfQ?list=PL4jjgxHdfmYYYQgeYoTsRQk4jOvIJHhm6
+                        white: https://youtu.be/7ZE2dPvbUGs?list=PL4jjgxHdfmYabCPLJQCRwOw4oZ0TXuz1k */}
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",

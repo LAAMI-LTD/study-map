@@ -2,7 +2,7 @@ import { colors } from "./colors";
 
 export default function AboutHeader() {
   return (
-    <div className="relative w-full min-h-[500px] overflow-hidden mb-12">
+    <div className="relative w-full min-h-screen pt-20 flex items-center overflow-hidden mb-12">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <img 
@@ -15,9 +15,9 @@ export default function AboutHeader() {
       </div>
 
       {/* Hero Card */}
-      <div className="relative w-full md:w-[600px] lg:w-[700px] p-2 md:p-12 mt-8 md:mt-12 mx-auto md:mr-8 lg:mr-12">
+      <div className="relative w-full md:w-[600px] lg:w-[700px] p-4 md:p-12 mx-auto md:mr-8 lg:mr-12">
         <div 
-          className="p-8 rounded-lg backdrop-blur-sm"
+          className="p-5 md:p-8 rounded-lg backdrop-blur-sm"
           style={{
             backgroundColor: `${colors.white}E6`, // 90% opacity
           }}
@@ -40,7 +40,7 @@ export default function AboutHeader() {
             </div>
 
             {/* Title */}
-            <h1 className="text-[2rem] sm:text-[3rem] md:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tighter mb-4 uppercase">
+            <h1 className="text-3xl sm:text-5xl md:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tighter mb-4 uppercase">
               <span style={{ color: colors.prussianBlue }}>YOUR TRUSTED</span>
               <br />
               <span
@@ -86,7 +86,7 @@ export default function AboutHeader() {
               
               <a
                 href="#"
-                className="flex items-center transition-colors font-semibold"
+                className="flex items-center transition-colors font-semibold group"
                 style={{ color: colors.oceanDeep }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = colors.prussianBlue;

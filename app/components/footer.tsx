@@ -78,9 +78,21 @@ export default function Footer() {
     ];
 
     return (
-        <footer className="w-full" style={{ backgroundColor: colors.prussianBlue }}>
+        <footer className="relative w-full overflow-hidden">
+            {/* Background Image with Overlay */}
+            <div className="absolute inset-0 z-0">
+                <Image
+                    src="/australia.jpg"
+                    alt="Australia background"
+                    fill
+                    className="object-cover"
+                    quality={100}
+                />
+                <div className="absolute inset-0 bg-black/70" />
+            </div>
+
             {/* Main Footer Content */}
-            <div className="mx-auto max-w-7xl px-6 py-12 sm:px-8 lg:px-12 lg:py-16">
+            <div className="relative z-10 mx-auto max-w-7xl px-6 py-12 sm:px-8 lg:px-12 lg:py-16">
                 <div className="flex flex-wrap justify-between -mx-4">
                     {/* Company Info Column */}
                     <div className="px-4 my-4 w-full xl:w-1/3">
@@ -229,8 +241,8 @@ export default function Footer() {
 
             {/* Bottom Bar */}
             <div
-                className="w-full py-5"
-                style={{ backgroundColor: `${colors.prussianBlue}CC`, borderTop: `1px solid ${colors.oceanDeep}20` }}
+                className="relative z-10 w-full py-5"
+                style={{ backgroundColor: `rgba(0, 40, 86, 0.85)`, borderTop: `1px solid ${colors.oceanDeep}20` }}
             >
                 <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
                     <div className="flex flex-col sm:flex-row justify-between items-center gap-3 text-center sm:text-left">

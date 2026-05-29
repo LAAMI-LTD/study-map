@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { motion, Variants } from "framer-motion";
-import AnimatedBackground from "../../components/animatedbg";
 
 type Props = {
   fadeUp: Variants;
@@ -20,7 +19,24 @@ export default function CTASection({ fadeUp, staggerContainer, imageVariants, co
       viewport={{ once: true, amount: 0.2 }}
       variants={fadeUp}
     >
-      <AnimatedBackground intensity="vivid" />
+      {/* Video Background Container */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster="/hero.jpg"
+          className="absolute inset-0 h-full w-full object-cover opacity-50"
+        >
+          <source src="/streak.webm" type="video/webm" />
+          <source src="/streak.mp4" type="video/mp4" />
+        </video>
+        {/* Dark Overlay for text readability */}
+        <div className="absolute inset-0 bg-black/5" />
+      </div>
+
       <motion.div
         className="relative z-10 mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-12 lg:py-24"
         variants={staggerContainer}
