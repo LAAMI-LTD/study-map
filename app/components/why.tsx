@@ -1,148 +1,266 @@
 "use client";
 
+import Link from "next/link";
+
 export default function WhyChooseUs() {
-    const colors = {
-        white: "#FFFEFE",
-        dustyDenim: "#738DAF",
-        oceanDeep: "#0A63B3",
-        prussianBlue: "#002856",
-        paleSlate: "#C7CDD8",
-    };
+  const colors = {
+    white: "#FFFFFF",
+    prussianBlue: "#002856",
+    oceanDeep: "#0A63B3",
+    ink: "#0D1B2A",
+    mist: "#F0F3F7",
+    border: "#DDE3EC",
+    slate: "#8A96A8",
+  };
 
-    const features = [
-        {
-            title: "Trusted Student Guidance",
-            description:
-                "Accurate and reliable information to help students make informed academic and career decisions.",
-        },
-        {
-            title: "End-to-End Support",
-            description:
-                "From counselling to visa guidance and pre-departure preparation, we support students at every stage.",
-        },
-    ];
+  const features = [
+    {
+      number: "01",
+      title: "Trusted Student Guidance",
+      description:
+        "Accurate, reliable information to help students make informed academic and career decisions — with no pressure, just clarity.",
+    },
+    {
+      number: "02",
+      title: "End-to-End Support",
+      description:
+        "From your first counselling session through visa guidance and pre-departure preparation, we're with you at every step.",
+    },
+    {
+      number: "03",
+      title: "Genuine Student Screening",
+      description:
+        "We carefully screen applicants for Genuine Student eligibility, ensuring your application is strong and compliant from the start.",
+    },
+  ];
 
-    return (
-        <section
-            className="w-full py-16 md:py-8 lg:py-8 bg-white/50"
+  return (
+    <section style={{ backgroundColor: colors.mist, position: "relative", overflow: "hidden" }}>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,600;1,300&display=swap');
+
+        .wcu-section { font-family: 'DM Sans', sans-serif; }
+
+        .wcu-eyebrow {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 10px;
+          font-weight: 600;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: ${colors.oceanDeep};
+        }
+
+        .wcu-heading {
+          font-family: 'Cormorant Garamond', serif;
+          font-weight: 600;
+          font-size: clamp(34px, 4.5vw, 56px);
+          line-height: 1.0;
+          letter-spacing: -0.02em;
+          color: ${colors.prussianBlue};
+        }
+
+        .wcu-heading em {
+          font-style: italic;
+          font-weight: 300;
+          color: ${colors.oceanDeep};
+        }
+
+        .wcu-body {
+          font-family: 'DM Sans', sans-serif;
+          font-weight: 300;
+          font-size: 14px;
+          line-height: 1.75;
+          color: ${colors.slate};
+        }
+
+        .wcu-feature-num {
+          font-family: 'Cormorant Garamond', serif;
+          font-weight: 300;
+          font-size: 12px;
+          letter-spacing: 0.06em;
+          color: ${colors.border};
+        }
+
+        .wcu-feature-title {
+          font-family: 'DM Sans', sans-serif;
+          font-weight: 600;
+          font-size: 14px;
+          letter-spacing: -0.01em;
+          color: ${colors.prussianBlue};
+          margin: 6px 0 6px;
+        }
+
+        .wcu-feature-desc {
+          font-family: 'DM Sans', sans-serif;
+          font-weight: 300;
+          font-size: 13px;
+          line-height: 1.65;
+          color: ${colors.slate};
+        }
+
+        .wcu-feature {
+          padding: 24px 0;
+          border-bottom: 1px solid ${colors.border};
+          display: flex;
+          gap: 20px;
+          align-items: flex-start;
+          transition: padding-left 0.2s ease;
+        }
+        .wcu-feature:first-child { border-top: 1px solid ${colors.border}; }
+        .wcu-feature:hover { padding-left: 6px; }
+        .wcu-feature:hover .wcu-dot { background: ${colors.oceanDeep}; transform: scale(1.3); }
+
+        .wcu-dot {
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          background: ${colors.border};
+          flex-shrink: 0;
+          margin-top: 6px;
+          transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .wcu-link {
+          font-family: 'DM Sans', sans-serif;
+          font-weight: 600;
+          font-size: 11px;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: ${colors.prussianBlue};
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          transition: color 0.2s ease;
+        }
+        .wcu-link:hover { color: ${colors.oceanDeep}; }
+
+        .wcu-img-frame {
+          position: relative;
+        }
+        .wcu-img-frame::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          border: 1px solid ${colors.border};
+          transform: translate(10px, 10px);
+          z-index: 0;
+        }
+
+        .wcu-stat-num {
+          font-family: 'Cormorant Garamond', serif;
+          font-weight: 600;
+          font-size: 32px;
+          line-height: 1;
+          color: ${colors.prussianBlue};
+        }
+        .wcu-stat-label {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 10px;
+          font-weight: 500;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: ${colors.slate};
+          margin-top: 4px;
+        }
+      `}</style>
+
+      <div
+        className="wcu-section"
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: "100px 24px",
+          display: "grid",
+          gridTemplateColumns: "1fr",
+          gap: "64px",
+        }}
+      >
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gap: "80px",
+            alignItems: "center",
+          }}
         >
-            <div className="container mx-auto px-6 sm:px-8 lg:px-12">
-                <div className="flex flex-col sm:flex-row items-center gap-8 lg:gap-12 max-w-screen-xl mx-auto">
-                    {/* Image Section - Left side on desktop */}
-                    <div className="sm:w-1/2 p-4 sm:p-6 lg:p-8">
-                        <div className="image object-center text-center relative">
-                            <div className="relative inline-block">
-                                {/* Decorative accent behind image */}
-                                <div
-                                    className="absolute -top-4 -left-4 w-24 h-24 rounded-full -z-10"
-                                    style={{ backgroundColor: colors.paleSlate, opacity: 0.5 }}
-                                />
-                                <div
-                                    className="absolute -bottom-4 -right-4 w-32 h-32 rounded-full -z-10"
-                                    style={{ backgroundColor: colors.oceanDeep, opacity: 0.1 }}
-                                />
-                                <img
-                                    src="https://i.imgur.com/WbQnbas.png"
-                                    alt="Study Map Consultants - Why choose us illustration"
-                                    className="max-w-full h-auto object-contain"
-                                    loading="eager"
-                                />
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Text Content Section - Right side on desktop */}
-                    <div className="sm:w-1/2 p-4 sm:p-6 lg:p-8">
-                        <div className="text-left">
-                            {/* Section label with underline accent */}
-                            <div className="inline-block mb-4">
-                                <span
-                                    className="text-sm font-bold uppercase tracking-wider"
-                                    style={{ color: colors.oceanDeep }}
-                                >
-                                    Why Choose Us
-                                </span>
-                                <div
-                                    className="h-0.5 w-12 mt-1"
-                                    style={{ backgroundColor: colors.oceanDeep }}
-                                />
-                            </div>
-
-                            {/* Main heading */}
-                            <h2
-                                className="my-4 font-bold text-3xl sm:text-4xl lg:text-5xl leading-tight"
-                                style={{ color: colors.prussianBlue }}
-                            >
-                                Your Success,{" "}
-                                <span style={{ color: colors.oceanDeep }}>Our Mission</span>
-                            </h2>
-
-                            {/* Lead paragraph */}
-                            <p
-                                className="text-base sm:text-lg mb-8 leading-relaxed"
-                                style={{ color: colors.prussianBlue, opacity: 0.8 }}
-                            >
-                                We provide accurate and reliable information to help students make
-                                informed academic and career decisions. Our team screens applicants
-                                for Genuine Student eligibility and supports every stage from
-                                counselling to pre-departure preparation.
-                            </p>
-
-                            {/* Features list */}
-                            <div className="space-y-6 mt-8">
-                                {features.map((feature, index) => (
-                                    <div key={index} className="flex gap-4 group">
-                                        {/* Icon / bullet point */}
-                                        <div className="flex-shrink-0 mt-1">
-                                            <div
-                                                className="w-5 h-5 rounded-full transition-all duration-300 group-hover:scale-110"
-                                                style={{ backgroundColor: colors.oceanDeep }}
-                                            />
-                                        </div>
-                                        <div>
-                                            <h3
-                                                className="text-lg md:text-xl font-bold mb-2"
-                                                style={{ color: colors.prussianBlue }}
-                                            >
-                                                {feature.title}
-                                            </h3>
-                                            <p
-                                                className="text-sm md:text-base leading-relaxed"
-                                                style={{ color: colors.prussianBlue, opacity: 0.7 }}
-                                            >
-                                                {feature.description}
-                                            </p>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-
-                            {/* CTA link (optional) */}
-                            <div className="mt-10">
-                                <button
-                                    className="group flex items-center gap-3 font-bold uppercase tracking-wide text-sm transition-all duration-300"
-                                    style={{ color: colors.oceanDeep }}
-                                >
-                                    <span>Learn more about our approach</span>
-                                    <svg
-                                        className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M14 5l7 7m0 0l-7 7m7-7H3"
-                                        />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          {/* Left — image */}
+          <div className="wcu-img-frame" style={{ position: "relative", zIndex: 1 }}>
+            <div style={{ position: "relative", zIndex: 1, background: colors.white, padding: "8px", border: `1px solid ${colors.border}` }}>
+              <img
+                src="/services1.jpg"
+                alt="Study Map Consultants illustration"
+                style={{ width: "100%", height: "auto", display: "block" }}
+                loading="eager"
+              />
             </div>
-        </section>
-    );
+
+            {/* Floating stat cards */}
+            <div style={{
+              position: "absolute",
+              bottom: "-20px",
+              right: "-20px",
+              background: colors.white,
+              border: `1px solid ${colors.border}`,
+              padding: "16px 20px",
+              zIndex: 2,
+              boxShadow: "0 4px 24px rgba(0,40,86,0.08)",
+            }}>
+              <div className="wcu-stat-num">500+</div>
+              <div className="wcu-stat-label">Students Placed</div>
+            </div>
+
+            <div style={{
+              position: "absolute",
+              top: "-16px",
+              left: "-16px",
+              background: colors.prussianBlue,
+              padding: "14px 18px",
+              zIndex: 2,
+            }}>
+              <div className="wcu-stat-num" style={{ color: colors.white }}>10+</div>
+              <div className="wcu-stat-label" style={{ color: "rgba(255,255,255,0.5)" }}>Years Experience</div>
+            </div>
+          </div>
+
+          {/* Right — content */}
+          <div>
+            <span className="wcu-eyebrow" style={{ display: "block", marginBottom: "20px" }}>
+              Why Choose Us
+            </span>
+
+            <h2 className="wcu-heading" style={{ marginBottom: "20px" }}>
+              Your Success,<br />
+              <em>Our Mission.</em>
+            </h2>
+
+            <p className="wcu-body" style={{ marginBottom: "40px", maxWidth: "420px" }}>
+              We provide accurate and reliable information to help students make informed academic and career decisions. Our team screens applicants for Genuine Student eligibility and supports every stage from counselling to pre-departure preparation.
+            </p>
+
+            {/* Features */}
+            <div style={{ marginBottom: "36px" }}>
+              {features.map((f, i) => (
+                <div key={i} className="wcu-feature">
+                  <div className="wcu-dot" />
+                  <div style={{ flex: 1 }}>
+                    <div className="wcu-feature-num">{f.number}</div>
+                    <div className="wcu-feature-title">{f.title}</div>
+                    <p className="wcu-feature-desc">{f.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <Link href="/about" className="wcu-link">
+              Learn more about our approach
+              <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+                <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

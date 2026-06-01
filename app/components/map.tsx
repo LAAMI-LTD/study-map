@@ -3,322 +3,425 @@
 import { useState } from "react";
 
 export default function MapsSection() {
-    const colors = {
-        white: "#FFFEFE",
-        dustyDenim: "#738DAF",
-        oceanDeep: "#0A63B3",
-        prussianBlue: "#002856",
-        paleSlate: "#C7CDD8",
-    };
+  const colors = {
+    white: "#FFFFFF",
+    prussianBlue: "#002856",
+    oceanDeep: "#0A63B3",
+    ink: "#0D1B2A",
+    mist: "#F0F3F7",
+    border: "#DDE3EC",
+    slate: "#8A96A8",
+  };
 
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        message: "",
-        copyToSelf: true,
-    });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+    copyToSelf: true,
+  });
+  const [submitted, setSubmitted] = useState(false);
+  const [focused, setFocused] = useState<string | null>(null);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { id, value, type } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [id]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
-        }));
-    };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value, type } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [id]: type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
+    }));
+  };
 
-    const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData(prev => ({
-            ...prev,
-            copyToSelf: e.target.checked
-        }));
-    };
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
 
-    const handleSubmit = () => {
-        // Handle form submission here
-        console.log("Form submitted:", formData);
-        alert("Thank you for your message! We'll get back to you soon.");
-    };
+  const contactItems = [
+    {
+      label: "Email",
+      value: "info@studymap.com",
+      href: "mailto:info@studymap.com",
+      icon: (
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M3 8l9 6 9-6M5 5h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      ),
+    },
+    {
+      label: "Mobile",
+      value: "+254 987 654 321",
+      href: "tel:+254987654321",
+      icon: (
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      ),
+    },
+    {
+      label: "Landline",
+      value: "(0421) 431 2030",
+      href: "tel:04214312030",
+      icon: (
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.054-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      ),
+    },
+    {
+      label: "Address",
+      value: "Sirgoi Plaza, Eldoret, Kenya",
+      href: "https://maps.google.com",
+      icon: (
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      ),
+    },
+  ];
 
-    return (
-        <section className="mb-32 p-4">
-            {/* Map Container */}
-            <div className="relative h-[300px] overflow-hidden bg-cover bg-[50%] bg-no-repeat">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d251.9509572011887!2d35.276100487511464!3d0.5162032068360302!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1781012320ccf0f1%3A0x761d376dd7c5f642!2sSirgoi%20Plaza!5e1!3m2!1sen!2ske!4v1780054801592!5m2!1sen!2ske"
-                    width="100%"
-                    height="480"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    title="Sirgoi Plaza Location"
-                    className="w-full h-full"
-                />
-            </div>
+  const fieldStyle = (id: string) => ({
+    width: "100%",
+    background: "transparent",
+    border: "none",
+    borderBottom: `1px solid ${focused === id ? colors.oceanDeep : colors.border}`,
+    outline: "none",
+    padding: "10px 0",
+    fontSize: "13px",
+    fontFamily: "'DM Sans', sans-serif",
+    fontWeight: 400,
+    color: colors.prussianBlue,
+    transition: "border-color 0.2s ease",
+    resize: "none" as const,
+  });
 
-            {/* Contact Form Card - Overlapping the map */}
-            <div className="container px-6 md:px-12">
-                <div
-                    className="block rounded-lg bg-white/80 px-6 py-12 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:py-16 md:px-12 -mt-[100px] backdrop-blur-[30px] border"
-                    style={{ borderColor: colors.paleSlate }}
-                >
-                    <div className="flex flex-wrap">
-                        {/* Contact Form - Left Side */}
-                        <div className="mb-12 w-full shrink-0 grow-0 basis-auto md:px-3 lg:mb-0 lg:w-5/12 lg:px-6">
-                            <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
-                                {/* Name Input */}
-                                <div className="relative mb-6">
-                                    <input
-                                        type="text"
-                                        id="name"
-                                        value={formData.name}
-                                        onChange={handleChange}
-                                        className="peer block min-h-[auto] w-full rounded border-2 bg-transparent py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 focus:outline-none"
-                                        style={{ borderColor: colors.paleSlate }}
-                                        placeholder=" "
-                                    />
-                                    <label
-                                        htmlFor="name"
-                                        className="pointer-events-none absolute top-0 left-3 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:pt-[0.37rem] peer-placeholder-shown:opacity-100 -translate-y-[0.9rem] scale-[0.8]"
-                                        style={{ color: colors.dustyDenim }}
-                                    >
-                                        Name
-                                    </label>
-                                </div>
+  return (
+    <section className="p-3 lg:p-6" style={{ backgroundColor: colors.white, position: "relative" }}>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,600;1,300&display=swap');
 
-                                {/* Email Input */}
-                                <div className="relative mb-6">
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        className="peer block min-h-[auto] w-full rounded border-2 bg-transparent py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 focus:outline-none"
-                                        style={{ borderColor: colors.paleSlate }}
-                                        placeholder=" "
-                                    />
-                                    <label
-                                        htmlFor="email"
-                                        className="pointer-events-none absolute top-0 left-3 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:pt-[0.37rem] peer-placeholder-shown:opacity-100 -translate-y-[0.9rem] scale-[0.8]"
-                                        style={{ color: colors.dustyDenim }}
-                                    >
-                                        Email address
-                                    </label>
-                                </div>
+        .maps-section { font-family: 'DM Sans', sans-serif; }
 
-                                {/* Message Textarea */}
-                                <div className="relative mb-6">
-                                    <textarea
-                                        id="message"
-                                        rows={3}
-                                        value={formData.message}
-                                        onChange={handleChange}
-                                        className="peer block min-h-[auto] w-full rounded border-2 bg-transparent py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 focus:outline-none"
-                                        style={{ borderColor: colors.paleSlate }}
-                                        placeholder=" "
-                                    />
-                                    <label
-                                        htmlFor="message"
-                                        className="pointer-events-none absolute top-0 left-3 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:pt-[0.37rem] peer-placeholder-shown:opacity-100 -translate-y-[0.9rem] scale-[0.8]"
-                                        style={{ color: colors.dustyDenim }}
-                                    >
-                                        Message
-                                    </label>
-                                </div>
+        .maps-eyebrow {
+          font-size: 10px;
+          font-weight: 600;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: ${colors.oceanDeep};
+          font-family: 'DM Sans', sans-serif;
+        }
 
-                                {/* Checkbox */}
-                                <div className="mb-6 inline-block min-h-[1.5rem] justify-center pl-[1.5rem] md:flex">
-                                    <input
-                                        type="checkbox"
-                                        id="copyToSelf"
-                                        checked={formData.copyToSelf}
-                                        onChange={handleCheckboxChange}
-                                        className="relative float-left mt-[0.15rem] mr-[6px] -ml-[1.5rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid outline-none before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:ml-[0.25rem] checked:after:-mt-px checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-t-0 checked:after:border-l-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:content-[''] checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:ml-[0.25rem] checked:focus:after:-mt-px checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-t-0 checked:focus:after:border-l-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent"
-                                        style={{ borderColor: colors.paleSlate }}
-                                    />
-                                    <label
-                                        htmlFor="copyToSelf"
-                                        className="inline-block pl-[0.15rem] hover:cursor-pointer text-sm"
-                                        style={{ color: colors.dustyDenim }}
-                                    >
-                                        Send me a copy of this message
-                                    </label>
-                                </div>
+        .maps-heading {
+          font-family: 'Cormorant Garamond', serif;
+          font-weight: 600;
+          font-size: clamp(30px, 3.5vw, 46px);
+          line-height: 1.0;
+          letter-spacing: -0.02em;
+          color: ${colors.prussianBlue};
+        }
 
-                                {/* Submit Button */}
-                                <button
-                                    type="submit"
-                                    className="mb-6 w-full rounded px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal transition-all duration-300 hover:scale-105 lg:mb-0"
-                                    style={{
-                                        backgroundColor: colors.oceanDeep,
-                                        color: colors.white,
-                                    }}
-                                    onMouseEnter={(e) => {
-                                        e.currentTarget.style.backgroundColor = colors.prussianBlue;
-                                    }}
-                                    onMouseLeave={(e) => {
-                                        e.currentTarget.style.backgroundColor = colors.oceanDeep;
-                                    }}
-                                >
-                                    Send
-                                </button>
-                            </form>
-                        </div>
+        .maps-heading em {
+          font-style: italic;
+          font-weight: 300;
+          color: ${colors.oceanDeep};
+        }
 
-                        {/* Contact Information - Right Side */}
-                        <div className="w-full shrink-0 grow-0 basis-auto lg:w-7/12">
-                            <div className="flex flex-wrap">
-                                {/* Technical Support */}
-                                <div className="mb-12 w-full shrink-0 grow-0 basis-auto md:w-6/12 md:px-3 lg:w-full lg:px-6 xl:w-6/12">
-                                    <div className="flex items-start">
-                                        <div className="shrink-0">
-                                            <div
-                                                className="inline-block rounded-md p-4"
-                                                style={{ backgroundColor: `${colors.oceanDeep}20` }}
-                                            >
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                    strokeWidth="2"
-                                                    stroke="currentColor"
-                                                    className="h-6 w-6"
-                                                    style={{ color: colors.oceanDeep }}
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        d="M14.25 9.75v-4.5m0 4.5h4.5m-4.5 0l6-6m-3 18c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 014.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 00-.38 1.21 12.035 12.035 0 007.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 011.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 01-2.25 2.25h-2.25z"
-                                                    />
-                                                </svg>
-                                            </div>
-                                        </div>
-                                        <div className="ml-6 grow">
-                                            <p className="mb-2 font-bold" style={{ color: colors.prussianBlue }}>
-                                                Technical support
-                                            </p>
-                                            <p className="text-sm" style={{ color: colors.dustyDenim }}>
-                                                info@studymap.com
-                                            </p>
-                                            <p className="text-sm" style={{ color: colors.dustyDenim }}>
-                                                +254 123 456 789
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+        .contact-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 14px;
+          padding: 16px 0;
+          border-bottom: 1px solid ${colors.border};
+          text-decoration: none;
+          transition: padding-left 0.2s ease;
+        }
+        .contact-item:first-child { border-top: 1px solid ${colors.border}; }
+        .contact-item:hover { padding-left: 4px; }
+        .contact-item:hover .contact-icon { color: ${colors.oceanDeep}; }
 
-                                {/* Address */}
-                                <div className="mb-12 w-full shrink-0 grow-0 basis-auto md:w-6/12 md:px-3 lg:w-full lg:px-6 xl:w-6/12">
-                                    <div className="flex items-start">
-                                        <div className="shrink-0">
-                                            <div
-                                                className="inline-block rounded-md p-4"
-                                                style={{ backgroundColor: `${colors.oceanDeep}20` }}
-                                            >
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                    strokeWidth="2"
-                                                    stroke="currentColor"
-                                                    className="w-7 h-7"
-                                                    style={{ color: colors.oceanDeep }}
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z"
-                                                    />
-                                                </svg>
-                                            </div>
-                                        </div>
-                                        <div className="ml-6 grow">
-                                            <p className="mb-2 font-bold" style={{ color: colors.prussianBlue }}>
-                                                Address
-                                            </p>
-                                            <p className="text-sm" style={{ color: colors.dustyDenim }}>
-                                                Sirgoi Plaza, Eldoret<br />
-                                                Kenya
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+        .contact-icon {
+          color: ${colors.slate};
+          flex-shrink: 0;
+          margin-top: 1px;
+          transition: color 0.2s ease;
+        }
 
-                                {/* Land Line */}
-                                <div className="mb-12 w-full shrink-0 grow-0 basis-auto md:mb-0 md:w-6/12 md:px-3 lg:mb-12 lg:w-full lg:px-6 xl:w-6/12">
-                                    <div className="align-start flex">
-                                        <div className="shrink-0">
-                                            <div
-                                                className="inline-block rounded-md p-4"
-                                                style={{ backgroundColor: `${colors.oceanDeep}20` }}
-                                            >
-                                                <svg
-                                                    version="1.1"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    x="0px"
-                                                    y="0px"
-                                                    className="w-7 h-7"
-                                                    viewBox="0 0 111.756 122.879"
-                                                    style={{ color: colors.oceanDeep, fill: "currentColor" }}
-                                                >
-                                                    <g>
-                                                        <path
-                                                            d="M27.953,5.569v96.769h19.792V5.569H37.456H27.953L27.953,5.569z M21.898,105.123V2.785C21.898,1.247,23.254,0,24.926,0 h12.53h13.316C52.443,0,53.8,1.247,53.8,2.785v102.338c0,1.537-1.356,2.783-3.028,2.783H24.926 C23.254,107.906,21.898,106.66,21.898,105.123L21.898,105.123z M13.32,17.704c1.671,0,3.027,1.247,3.027,2.785 s-1.355,2.784-3.027,2.784H7.352c-0.161,0-0.292,0.022-0.39,0.064c-0.129,0.056-0.276,0.166-0.429,0.325 c-0.161,0.167-0.281,0.346-0.353,0.528c-0.083,0.208-0.125,0.465-0.125,0.759v90.803c0,0.287,0.043,0.537,0.125,0.74l0.034,0.092 c0.068,0.135,0.165,0.264,0.284,0.383c0.126,0.125,0.258,0.217,0.39,0.27c0.123,0.051,0.279,0.074,0.466,0.074h97.052 c0.188,0,0.346-0.025,0.467-0.074c0.133-0.053,0.264-0.145,0.389-0.27c3.035-3.035,0.441,1.799,0.441-1.215V24.949 c0-3.667,3.039,2.357-0.477-1.288c-0.143-0.146-0.287-0.254-0.43-0.314c-0.113-0.048-0.246-0.075-0.391-0.075H62.563 c-1.672,0-3.027-1.247-3.027-2.784s1.355-2.785,3.027-2.785h41.842c1.041,0,2.029,0.204,2.943,0.597 c0.895,0.385,1.699,0.945,2.393,1.663c0.664,0.686,1.17,1.468,1.514,2.334c0.332,0.839,0.502,1.726,0.502,2.652v90.803 c0,0.938-0.168,1.826-0.502,2.654c-0.344,0.859-0.865,1.639-1.549,2.324c-0.701,0.703-1.506,1.234-2.398,1.598 c-0.906,0.367-1.879,0.551-2.902,0.551H7.352c-1.022,0-1.995-0.184-2.901-0.551c-0.894-0.363-1.698-0.896-2.399-1.598 c-0.621-0.623-1.107-1.33-1.45-2.107c-0.036-0.07-0.069-0.143-0.099-0.217C0.168,117.574,0,116.684,0,115.752V24.949 c0-0.921,0.17-1.811,0.504-2.652c0.342-0.863,0.849-1.648,1.512-2.334c0.683-0.707,1.488-1.263,2.393-1.652 c0.929-0.401,1.917-0.607,2.943-0.607H13.32L13.32,17.704z M65.902,29.03h27.049c0.803,0,1.566,0.145,2.291,0.431 c0.076,0.03,0.15,0.063,0.223,0.099c0.607,0.269,1.166,0.635,1.666,1.096c0.584,0.533,1.027,1.128,1.326,1.782 c0.047,0.104,0.088,0.21,0.119,0.317c0.225,0.584,0.34,1.189,0.34,1.812v12.611c0,0.744-0.156,1.45-0.459,2.118l-0.004,0.009 l0.004,0.002c-0.291,0.64-0.725,1.224-1.291,1.75c-0.58,0.546-1.227,0.956-1.932,1.231c-0.736,0.287-1.5,0.426-2.283,0.426H65.902 c-0.777,0-1.535-0.14-2.27-0.426c-0.693-0.269-1.33-0.668-1.912-1.198c-0.588-0.539-1.031-1.144-1.326-1.81 c-0.033-0.078-0.063-0.157-0.09-0.235c-0.234-0.605-0.35-1.228-0.35-1.867V34.567c0-0.723,0.146-1.424,0.445-2.099l-0.006-0.002 c0.295-0.666,0.738-1.271,1.326-1.81l0.037-0.032l-0.002-0.001c0.877-0.78,2.039-1.219,2.119-1.244 C64.537,29.147,65.215,29.03,65.902,29.03L65.902,29.03z M93.475,34.599h-28.08v12.547h28.08V34.599L93.475,34.599z M78.877,63.42 c1.072,0,2.01,0.41,2.807,1.207s1.188,1.734,1.188,2.785c0,1.148-0.389,2.104-1.188,2.865c-0.799,0.758-1.734,1.129-2.807,1.129 c-1.129,0-2.084-0.371-2.844-1.129c-0.76-0.762-1.148-1.717-1.148-2.865c0-1.051,0.391-1.988,1.148-2.785 S77.748,63.42,78.877,63.42L78.877,63.42z M90.977,63.42c1.072,0,2.008,0.41,2.805,1.207s1.189,1.734,1.189,2.785 c0,1.148-0.391,2.104-1.189,2.865c-0.799,0.758-1.732,1.129-2.805,1.129c-1.131,0-2.086-0.371-2.846-1.129 c-0.76-0.762-1.148-1.717-1.148-2.865c0-1.051,0.391-1.988,1.148-2.785S89.846,63.42,90.977,63.42L90.977,63.42z M66.662,75.518 c1.15,0,2.105,0.389,2.865,1.148s1.129,1.715,1.129,2.865c0,1.051-0.371,1.988-1.129,2.785s-1.715,1.209-2.865,1.209 c-1.053,0-1.988-0.412-2.785-1.209s-1.209-1.734-1.209-2.785c0-1.15,0.41-2.105,1.209-2.865S65.609,75.518,66.662,75.518 L66.662,75.518z M78.877,75.518c1.072,0,2.008,0.389,2.807,1.148s1.188,1.715,1.188,2.865c0,1.051-0.391,1.988-1.188,2.785 s-1.734,1.209-2.807,1.209c-1.129,0-2.086-0.412-2.844-1.209s-1.148-1.734-1.148-2.785c0-1.15,0.389-2.105,1.148-2.865 S77.748,75.518,78.877,75.518L78.877,75.518z M90.977,75.518c1.072,0,2.006,0.389,2.805,1.148s1.189,1.715,1.189,2.865 c0,1.051-0.393,1.988-1.189,2.785s-1.732,1.209-2.805,1.209c-1.131,0-2.088-0.412-2.846-1.209s-1.148-1.734-1.148-2.785 c0-1.15,0.389-2.105,1.148-2.865S89.846,75.518,90.977,75.518L90.977,75.518z M66.662,87.518c1.15,0,2.107,0.393,2.865,1.189 s1.129,1.773,1.129,2.922c0,1.053-0.369,1.988-1.129,2.787s-1.715,1.207-2.865,1.207c-1.053,0-1.986-0.408-2.785-1.207 s-1.209-1.734-1.209-2.787c0-1.148,0.412-2.125,1.209-2.922S65.609,87.518,66.662,87.518L66.662,87.518z M78.877,87.518 c1.072,0,2.01,0.393,2.807,1.189s1.188,1.773,1.188,2.922c0,1.053-0.389,1.988-1.188,2.787s-1.734,1.207-2.807,1.207 c-1.129,0-2.084-0.408-2.844-1.207s-1.148-1.734-1.148-2.787c0-1.148,0.391-2.125,1.148-2.922S77.748,87.518,78.877,87.518 L78.877,87.518z M90.977,87.518c1.072,0,2.008,0.393,2.805,1.189s1.189,1.773,1.189,2.922c0,1.053-0.391,1.988-1.189,2.787 s-1.732,1.207-2.805,1.207c-1.131,0-2.086-0.408-2.846-1.207s-1.148-1.734-1.148-2.787c0-1.148,0.391-2.125,1.148-2.922 S89.846,87.518,90.977,87.518L90.977,87.518z M78.877,99.617c1.072,0,2.008,0.389,2.807,1.188s1.188,1.734,1.188,2.807 c0,1.129-0.389,2.084-1.188,2.844s-1.734,1.148-2.807,1.148c-1.129,0-2.084-0.389-2.844-1.148s-1.148-1.715-1.148-2.844 c0-1.072,0.389-2.008,1.148-2.807S77.748,99.617,78.877,99.617L78.877,99.617z M66.662,63.42c1.15,0,2.107,0.41,2.865,1.207 s1.129,1.734,1.129,2.785c0,1.148-0.369,2.104-1.129,2.865c-0.76,0.758-1.715,1.129-2.865,1.129c-1.053,0-1.986-0.371-2.785-1.129 c-0.799-0.762-1.209-1.717-1.209-2.865c0-1.051,0.412-1.988,1.209-2.785S65.609,63.42,66.662,63.42L66.662,63.42z"
-                                                        />
-                                                    </g>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                        <div className="ml-6 grow">
-                                            <p className="mb-2 font-bold" style={{ color: colors.prussianBlue }}>
-                                                Land Line
-                                            </p>
-                                            <p className="text-sm" style={{ color: colors.dustyDenim }}>
-                                                (0421) 431 2030
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+        .contact-label {
+          font-size: 9px;
+          font-weight: 600;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: ${colors.slate};
+          margin-bottom: 3px;
+          font-family: 'DM Sans', sans-serif;
+        }
 
-                                {/* Mobile */}
-                                <div className="w-full shrink-0 grow-0 basis-auto md:w-6/12 md:px-3 lg:w-full lg:px-6 xl:mb-12 xl:w-6/12">
-                                    <div className="align-start flex">
-                                        <div className="shrink-0">
-                                            <div
-                                                className="inline-block rounded-md p-4"
-                                                style={{ backgroundColor: `${colors.oceanDeep}20` }}
-                                            >
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                    strokeWidth="1.5"
-                                                    stroke="currentColor"
-                                                    className="w-6 h-6"
-                                                    style={{ color: colors.oceanDeep }}
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"
-                                                    />
-                                                </svg>
-                                            </div>
-                                        </div>
-                                        <div className="ml-6 grow">
-                                            <p className="mb-2 font-bold" style={{ color: colors.prussianBlue }}>
-                                                Mobile
-                                            </p>
-                                            <p className="text-sm" style={{ color: colors.dustyDenim }}>
-                                                +254 987 654 321
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        .contact-value {
+          font-size: 13px;
+          font-weight: 400;
+          color: ${colors.prussianBlue};
+          font-family: 'DM Sans', sans-serif;
+        }
+
+        .field-label {
+          font-size: 9px;
+          font-weight: 600;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: ${colors.slate};
+          display: block;
+          margin-bottom: 2px;
+          font-family: 'DM Sans', sans-serif;
+        }
+
+        .submit-btn {
+          font-family: 'DM Sans', sans-serif;
+          font-weight: 600;
+          font-size: 11px;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 13px 28px;
+          background: ${colors.prussianBlue};
+          color: #fff;
+          border: none;
+          cursor: pointer;
+          transition: background 0.2s ease;
+          width: 100%;
+          justify-content: center;
+        }
+        .submit-btn:hover { background: ${colors.oceanDeep}; }
+      `}</style>
+
+      {/* Map — using the specified design */}
+      <div
+        className="map-container"
+        style={{
+          height: "50vh",
+          minHeight: "350px",
+          maxHeight: "600px",
+          width: "100%",
+          borderBottom: `1px solid ${colors.border}`,
+        }}
+      >
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d251.9509572011887!2d35.276100487511464!3d0.5162032068360302!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1781012320ccf0f1%3A0x761d376dd7c5f642!2sSirgoi%20Plaza!5e1!3m2!1sen!2ske!4v1780054801592!5m2!1sen!2ske"
+          width="100%"
+          height="100%"
+          style={{ border: 0 }}
+          allowFullScreen
+          loading="lazy"
+          title="Sirgoi Plaza Location"
+        />
+      </div>
+
+      {/* Content below map */}
+      <div
+        className="maps-section"
+        style={{ maxWidth: "1200px", margin: "0 auto", padding: "80px 24px 100px" }}
+      >
+        {/* Header */}
+        <div style={{ marginBottom: "56px" }}>
+          <span className="maps-eyebrow" style={{ display: "block", marginBottom: "16px" }}>Get In Touch</span>
+          <h2 className="maps-heading">
+            We'd Love to <em>Hear From You.</em>
+          </h2>
+        </div>
+
+        {/* Two-column layout */}
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+          gap: "80px",
+          alignItems: "start",
+        }}>
+
+          {/* Left — form */}
+          <div>
+            {submitted ? (
+              <div style={{
+                padding: "40px 32px",
+                border: `1px solid ${colors.border}`,
+                textAlign: "center",
+              }}>
+                <div style={{
+                  width: "40px", height: "40px",
+                  border: `1.5px solid ${colors.oceanDeep}`,
+                  borderRadius: "50%",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  margin: "0 auto 16px",
+                  color: colors.oceanDeep,
+                }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                 </div>
+                <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "13px", color: colors.slate, lineHeight: 1.7 }}>
+                  Thank you — we've received your message and will be in touch shortly.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "28px" }}>
+                <div>
+                  <label className="field-label" htmlFor="name">Full Name</label>
+                  <input
+                    id="name"
+                    type="text"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    onFocus={() => setFocused("name")}
+                    onBlur={() => setFocused(null)}
+                    style={fieldStyle("name")}
+                    placeholder="Your full name"
+                  />
+                </div>
+
+                <div>
+                  <label className="field-label" htmlFor="email">Email Address</label>
+                  <input
+                    id="email"
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    onFocus={() => setFocused("email")}
+                    onBlur={() => setFocused(null)}
+                    style={fieldStyle("email")}
+                    placeholder="you@example.com"
+                  />
+                </div>
+
+                <div>
+                  <label className="field-label" htmlFor="message">Message</label>
+                  <textarea
+                    id="message"
+                    required
+                    rows={4}
+                    value={formData.message}
+                    onChange={handleChange}
+                    onFocus={() => setFocused("message")}
+                    onBlur={() => setFocused(null)}
+                    style={fieldStyle("message")}
+                    placeholder="How can we help you?"
+                  />
+                </div>
+
+                {/* Checkbox */}
+                <label style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  cursor: "pointer",
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: "12px",
+                  color: colors.slate,
+                  userSelect: "none",
+                }}>
+                  <div style={{
+                    width: "14px", height: "14px", flexShrink: 0,
+                    border: `1px solid ${formData.copyToSelf ? colors.prussianBlue : colors.border}`,
+                    background: formData.copyToSelf ? colors.prussianBlue : "transparent",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    transition: "all 0.15s ease",
+                  }}>
+                    {formData.copyToSelf && (
+                      <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
+                        <path d="M2 5l2.5 2.5L8 3" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    )}
+                  </div>
+                  <input
+                    type="checkbox"
+                    id="copyToSelf"
+                    checked={formData.copyToSelf}
+                    onChange={handleChange}
+                    style={{ display: "none" }}
+                  />
+                  Send me a copy of this message
+                </label>
+
+                <button type="submit" className="submit-btn">
+                  Send Message
+                  <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+                    <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+              </form>
+            )}
+          </div>
+
+          {/* Right — contact info */}
+          <div>
+            <p style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: 300,
+              fontSize: "14px",
+              lineHeight: 1.75,
+              color: colors.slate,
+              marginBottom: "36px",
+              maxWidth: "360px",
+            }}>
+              Our team is available Monday through Friday. We aim to respond to all enquiries within one business day.
+            </p>
+
+            <div>
+              {contactItems.map((item, i) => (
+                <a
+                  key={i}
+                  href={item.href}
+                  className="contact-item"
+                  target={item.label === "Address" ? "_blank" : undefined}
+                  rel="noopener noreferrer"
+                >
+                  <span className="contact-icon">{item.icon}</span>
+                  <div>
+                    <div className="contact-label">{item.label}</div>
+                    <div className="contact-value">{item.value}</div>
+                  </div>
+                </a>
+              ))}
             </div>
-        </section>
-    );
+
+            {/* Office hours */}
+            <div style={{
+              marginTop: "36px",
+              padding: "20px 24px",
+              background: colors.mist,
+              border: `1px solid ${colors.border}`,
+            }}>
+              <div style={{
+                fontSize: "9px",
+                fontWeight: 600,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                color: colors.slate,
+                marginBottom: "12px",
+                fontFamily: "'DM Sans', sans-serif",
+              }}>
+                Office Hours
+              </div>
+              {[
+                { day: "Monday – Friday", time: "8:00 AM – 5:00 PM" },
+                { day: "Saturday", time: "9:00 AM – 1:00 PM" },
+                { day: "Sunday", time: "Closed" },
+              ].map((row, i) => (
+                <div key={i} style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  paddingBottom: i < 2 ? "8px" : 0,
+                  fontFamily: "'DM Sans', sans-serif",
+                }}>
+                  <span style={{ fontSize: "12px", color: colors.prussianBlue }}>{row.day}</span>
+                  <span style={{ fontSize: "12px", color: colors.slate }}>{row.time}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

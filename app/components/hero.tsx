@@ -2,206 +2,353 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 
 export default function Hero() {
-    // Color palette from design system
     const colors = {
-        white: "#FFFEFE",
-        dustyDenim: "#738DAF",
-        oceanDeep: "#0A63B3",
+        white: "#FFFFFF",
         prussianBlue: "#002856",
-        paleSlate: "#C7CDD8",
+        oceanDeep: "#0A63B3",
+        ink: "#0D1B2A",
+        mist: "#F0F3F7",
+        border: "#DDE3EC",
+        slate: "#8A96A8",
     };
+
+    const headlineRef = useRef(null);
+
+    useEffect(() => {
+        const elements = document.querySelectorAll<HTMLElement>(".hero-reveal");
+
+        elements.forEach((el, i) => {
+            el.style.opacity = "0";
+            el.style.transform = "translateY(28px)";
+
+            setTimeout(() => {
+                el.style.transition = "opacity 0.7s ease, transform 0.7s ease";
+                el.style.opacity = "1";
+                el.style.transform = "translateY(0)";
+            }, 120 + i * 90);
+        });
+    }, []);
+
+    const stats = [
+        { number: "10+", label: "Years Experience" },
+        { number: "500+", label: "Students Placed" },
+        { number: "8+", label: "Partner Universities" },
+    ];
 
     return (
         <section
             id="hero"
-            className="relative min-h-screen flex items-center px-6 md:px-12 overflow-hidden pt-24 md:pt-0"
-            style={{ backgroundColor: colors.white }}
+            style={{
+                position: "relative",
+                minHeight: "100vh",
+                overflow: "hidden",
+                backgroundColor: colors.ink,
+                display: "flex",
+                alignItems: "stretch",
+            }}
         >
-            {/* Image Background Container */}
-            <div className="absolute inset-0 z-0 overflow-hidden">
-                <div className="absolute inset-0 bg-black/50" />
+            <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&display=swap');
+
+        .hero-display {
+          font-family: 'Cormorant Garamond', serif;
+          font-weight: 600;
+          line-height: 0.92;
+          letter-spacing: -0.02em;
+        }
+
+        .hero-display-italic {
+          font-family: 'Cormorant Garamond', serif;
+          font-weight: 300;
+          font-style: italic;
+          line-height: 0.92;
+          letter-spacing: -0.01em;
+        }
+
+        .hero-body {
+          font-family: 'DM Sans', sans-serif;
+        }
+
+        .hero-cta-primary {
+          font-family: 'DM Sans', sans-serif;
+          font-weight: 600;
+          font-size: 12px;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          display: inline-flex;
+          align-items: center;
+          gap: 12px;
+          padding: 14px 28px;
+          background: ${colors.oceanDeep};
+          color: #fff;
+          text-decoration: none;
+          transition: background 0.2s ease;
+        }
+        .hero-cta-primary:hover { background: ${colors.prussianBlue}; }
+
+        .hero-cta-ghost {
+          font-family: 'DM Sans', sans-serif;
+          font-weight: 500;
+          font-size: 12px;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 14px 28px;
+          border: 1px solid rgba(255,255,255,0.3);
+          color: rgba(255,255,255,0.85);
+          text-decoration: none;
+          transition: border-color 0.2s ease, color 0.2s ease;
+        }
+        .hero-cta-ghost:hover {
+          border-color: rgba(255,255,255,0.7);
+          color: #fff;
+        }
+
+        .stat-number {
+          font-family: 'Cormorant Garamond', serif;
+          font-weight: 600;
+          font-size: 36px;
+          line-height: 1;
+          color: #fff;
+        }
+
+        .stat-label {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 10px;
+          font-weight: 500;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: rgba(255,255,255,0.45);
+          margin-top: 4px;
+        }
+
+        .tag-pill {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 10px;
+          font-weight: 600;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 6px 12px;
+          border: 1px solid rgba(255,255,255,0.18);
+          color: rgba(255,255,255,0.6);
+        }
+
+        .scroll-line {
+          animation: scrollDrop 2.2s ease-in-out infinite;
+        }
+        @keyframes scrollDrop {
+          0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
+          50%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+          51%  { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
+          100% { transform: scaleY(0); transform-origin: bottom; opacity: 0.2; }
+        }
+
+        .image-panel {
+          position: absolute;
+          top: 0; right: 0;
+          width: 52%;
+          height: 100%;
+        }
+
+        @media (max-width: 1023px) {
+          .image-panel {
+            width: 100%;
+            opacity: 0.22;
+          }
+        }
+
+        .hero-reveal { will-change: opacity, transform; }
+      `}</style>
+
+            {/* Background image panel */}
+            <div className="image-panel">
                 <Image
                     src="/global3.jpg"
-                    alt="Background"
+                    alt="Global Education"
                     fill
                     className="object-cover"
                     priority
-                    quality={100}
+                    quality={90}
                 />
-
-                {/* Dark Overlay for text readability */}
-                <div className="absolute inset-0 bg-black/30" />
+                {/* Fade left into dark bg */}
+                <div style={{
+                    position: "absolute", inset: 0,
+                    background: `linear-gradient(to right, ${colors.ink} 0%, ${colors.ink}CC 18%, transparent 55%), linear-gradient(to top, ${colors.ink}99 0%, transparent 40%)`,
+                }} />
             </div>
 
-            {/* Right side decorative shapes - adjusted for image */}
-            <div className="absolute right-0 top-0 w-full lg:w-7/12 h-[50vh] lg:h-full z-10 overflow-hidden pointer-events-none">
-                {/* Decorative geometric shapes */}
-                <div
-                    className="absolute -top-20 -right-20 w-80 h-80 lg:w-[500px] lg:h-[500px] rounded-full"
-                    style={{ backgroundColor: colors.prussianBlue, opacity: 0.15 }}
-                />
-                <div
-                    className="absolute bottom-0 left-0 w-40 h-40 lg:w-64 lg:h-64"
-                    style={{ backgroundColor: colors.oceanDeep, opacity: 0.12 }}
-                />
-            </div>
+            {/* Thin vertical rule */}
+            <div style={{
+                position: "absolute",
+                left: "calc(48% - 1px)",
+                top: 0, bottom: 0,
+                width: "1px",
+                background: "rgba(255,255,255,0.07)",
+                zIndex: 2,
+                display: "none",
+            }} className="hidden lg:block" />
 
-            {/* Main content - removed manual margins */}
-            <div className="relative w-full max-w-6xl py-24 z-30">
-                {/* Logo and badge */}
-                <div
-                    className="inline-flex items-center bg-white gap-3 mb-8 px-5 py-2.5"
-                    style={{
-                        borderLeft: `4px solid ${colors.oceanDeep}`,
-                    }}
-                >
-                    <div className="relative h-10 w-10 sm:h-12 sm:w-12">
-                        <Image
-                            src="/smlogo.png"
-                            alt="Study Map Consultants Logo"
-                            fill
-                            className="object-contain"
-                            priority
-                        />
+            {/* Content */}
+            <div style={{
+                position: "relative",
+                zIndex: 10,
+                display: "flex",
+                alignItems: "center",
+                width: "100%",
+                maxWidth: "1200px",
+                margin: "0 auto",
+                padding: "120px 24px 80px",
+            }}>
+                <div style={{ maxWidth: "620px", width: "100%" }}>
+
+                    {/* Top tag */}
+                    <div className="hero-reveal" style={{ marginBottom: "36px" }}>
+                        <span className="tag-pill">
+                            <div style={{
+                                width: "6px", height: "6px", borderRadius: "50%",
+                                background: colors.oceanDeep,
+                                flexShrink: 0,
+                            }} />
+                            Study Map Consultants Ltd
+                        </span>
                     </div>
-                </div>
 
-                {/* Hero Title with solid styling */}
-                <h1 className="text-[3.5rem] sm:text-[5rem] md:text-7xl lg:text-[8rem] font-black leading-[0.9] tracking-tighter mb-10 uppercase">
-                    <span style={{ color: colors.white }}>YOUR MAP TO</span>
-                    <br />
-                    <span
-                        className="stroke-text inline-block"
-                        style={{ WebkitTextStrokeColor: colors.white }}
-                    >
-                        GLOBAL
-                    </span>
-                    <br />
-                    <span style={{ color: colors.white }}>EDUCATION.</span>
-                </h1>
-
-                {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 md:gap-6">
-                    <Link
-                        href="/contact"
-                        className="group flex items-center justify-center gap-4 px-8 py-4 transition-all font-black uppercase tracking-wider text-sm"
-                        style={{
-                            backgroundColor: colors.oceanDeep,
-                            color: colors.white,
-                        }}
-                        onMouseEnter={(e) => {
-                            e.currentTarget.style.backgroundColor = colors.prussianBlue;
-                        }}
-                        onMouseLeave={(e) => {
-                            e.currentTarget.style.backgroundColor = colors.oceanDeep;
-                        }}
-                    >
-                        <span>Start Your Journey</span>
-                        <div
-                            className="p-1 rounded transition-transform group-hover:translate-x-1"
-                            style={{ backgroundColor: `${colors.white}20` }}
+                    {/* Headline */}
+                    <h1 style={{ margin: 0 }}>
+                        <span
+                            className="hero-reveal hero-display"
+                            style={{
+                                display: "block",
+                                fontSize: "clamp(52px, 8vw, 104px)",
+                                color: colors.white,
+                            }}
                         >
-                            <svg
-                                className="w-5 h-5"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    strokeLinecap="square"
-                                    strokeLinejoin="miter"
-                                    strokeWidth="3"
-                                    d="M14 5l7 7m0 0l-7 7m7-7H3"
-                                />
-                            </svg>
-                        </div>
-                    </Link>
+                            Your Map
+                        </span>
+                        <span
+                            className="hero-reveal hero-display-italic"
+                            style={{
+                                display: "block",
+                                fontSize: "clamp(52px, 8vw, 104px)",
+                                color: "transparent",
+                                WebkitTextStroke: `1px rgba(255,255,255,0.45)`,
+                            }}
+                        >
+                            to Global
+                        </span>
+                        <span
+                            className="hero-reveal hero-display"
+                            style={{
+                                display: "block",
+                                fontSize: "clamp(52px, 8vw, 104px)",
+                                color: colors.white,
+                            }}
+                        >
+                            Education.
+                        </span>
+                    </h1>
 
-                    <Link
-                        href="/contact"
-                        className="px-8 py-4 transition-all font-black uppercase tracking-wider text-sm text-center"
+                    {/* Sub copy */}
+                    <p
+                        className="hero-reveal hero-body"
                         style={{
-                            border: `2px solid ${colors.white}`,
-                            color: colors.white,
-                            backgroundColor: "transparent",
-                        }}
-                        onMouseEnter={(e) => {
-                            e.currentTarget.style.backgroundColor = colors.white;
-                            e.currentTarget.style.borderColor = colors.white;
-                            e.currentTarget.style.color = colors.prussianBlue;
-                        }}
-                        onMouseLeave={(e) => {
-                            e.currentTarget.style.backgroundColor = "transparent";
-                            e.currentTarget.style.borderColor = colors.white;
-                            e.currentTarget.style.color = colors.white;
+                            marginTop: "28px",
+                            marginBottom: 0,
+                            fontSize: "15px",
+                            fontWeight: 300,
+                            lineHeight: 1.7,
+                            color: "rgba(255,255,255,0.5)",
+                            maxWidth: "400px",
                         }}
                     >
-                        Book Consultation
-                    </Link>
-                </div>
+                        Expert guidance for students pursuing undergraduate, postgraduate, and professional programmes at leading universities worldwide.
+                    </p>
 
-                {/* Stats section */}
-                <div className="flex flex-wrap gap-8 md:gap-12 mt-16 pl-4 pt-8 border-t" style={{ borderColor: colors.paleSlate }}>
-                    <div>
-                        <div className="text-3xl font-black" style={{ color: colors.oceanDeep }}>10+</div>
-                        <div className="text-xs font-bold uppercase tracking-wide text-white/80">Years Experience</div>
+                    {/* CTA row */}
+                    <div
+                        className="hero-reveal"
+                        style={{
+                            display: "flex",
+                            flexWrap: "wrap",
+                            gap: "12px",
+                            marginTop: "44px",
+                        }}
+                    >
+                        <Link href="/contact" className="hero-cta-primary">
+                            Start Your Journey
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                        </Link>
+                        <Link href="/services" className="hero-cta-ghost">
+                            Our Services
+                        </Link>
                     </div>
-                    <div>
-                        <div className="text-3xl font-black" style={{ color: colors.oceanDeep }}>500+</div>
-                        <div className="text-xs font-bold uppercase tracking-wide text-white/80">Students Placed</div>
-                    </div>
-                    <div>
-                        <div className="text-3xl font-black" style={{ color: colors.oceanDeep }}>8+</div>
-                        <div className="text-xs font-bold uppercase tracking-wide text-white/80">Partner Universities</div>
+
+                    {/* Stats */}
+                    <div
+                        className="hero-reveal"
+                        style={{
+                            display: "flex",
+                            gap: "40px",
+                            marginTop: "64px",
+                            paddingTop: "32px",
+                            borderTop: "1px solid rgba(255,255,255,0.08)",
+                            flexWrap: "wrap",
+                        }}
+                    >
+                        {stats.map((s, i) => (
+                            <div key={i}>
+                                <div className="stat-number">{s.number}</div>
+                                <div className="stat-label">{s.label}</div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
 
             {/* Scroll indicator */}
-            <div className="absolute bottom-8 left-8 hidden lg:block z-30">
-                <div className="flex flex-col items-center gap-3">
-                    <span
-                        className="[writing-mode:vertical-lr] text-[10px] font-black uppercase tracking-[0.3em]"
-                        style={{ color: colors.white }}
-                    >
-                        Scroll
-                    </span>
-                    <div
-                        className="w-[2px] h-12 relative overflow-hidden"
-                        style={{ backgroundColor: colors.paleSlate }}
-                    >
-                        <div
-                            className="absolute top-0 left-0 w-full h-1/2 animate-[scrollAnim_2s_infinite]"
-                            style={{ backgroundColor: colors.oceanDeep }}
-                        />
-                    </div>
+            <div style={{
+                position: "absolute",
+                bottom: "40px",
+                right: "40px",
+                zIndex: 20,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "10px",
+            }} className="hidden lg:flex">
+                <span style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: "9px",
+                    fontWeight: 600,
+                    letterSpacing: "0.2em",
+                    textTransform: "uppercase",
+                    color: "rgba(255,255,255,0.3)",
+                    writingMode: "vertical-lr",
+                }}>Scroll</span>
+                <div style={{
+                    width: "1px",
+                    height: "48px",
+                    background: "rgba(255,255,255,0.1)",
+                    position: "relative",
+                    overflow: "hidden",
+                }}>
+                    <div className="scroll-line" style={{
+                        position: "absolute",
+                        inset: 0,
+                        background: colors.oceanDeep,
+                    }} />
                 </div>
             </div>
-
-            <style jsx>{`
-                @keyframes scrollAnim {
-                    0% {
-                        transform: translateY(-100%);
-                    }
-                    100% {
-                        transform: translateY(200%);
-                    }
-                }
-
-                /* Stroke text effect for "GLOBAL" */
-                .stroke-text {
-                    -webkit-text-stroke-width: 2px;
-                    -webkit-text-stroke-color: inherit;
-                    color: transparent;
-                }
-                @media (min-width: 768px) {
-                    .stroke-text {
-                        -webkit-text-stroke-width: 3px;
-                    }
-                }
-            `}</style>
         </section>
     );
 }

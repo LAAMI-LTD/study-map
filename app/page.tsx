@@ -65,7 +65,7 @@ export default function Home() {
         </div>
       </motion.section>
 
-      <motion.section
+      {/* <motion.section
         className="relative py-8 overflow-hidden"
         initial="hidden"
         whileInView="visible"
@@ -73,7 +73,7 @@ export default function Home() {
         variants={fadeUp}
       >
         <MissionValues />
-      </motion.section>
+      </motion.section> */}
 
       {/* ── Services Grid ── mid-tone palette background */}
       <motion.section
@@ -89,7 +89,12 @@ export default function Home() {
           <Services />
         </div>
       </motion.section>
-
+      <CTASection
+        fadeUp={fadeUp}
+        staggerContainer={staggerContainer}
+        imageVariants={imageVariants}
+        contentVariants={contentVariants}
+      />
       {/* ── Why Choose Us ── lighter treatment on the light section */}
       <motion.section
         className="relative overflow-hidden bg-white"
@@ -105,12 +110,7 @@ export default function Home() {
       </motion.section>
 
       {/* ── CTA ── dark section, shapes pop nicely */}
-      <CTASection
-        fadeUp={fadeUp}
-        staggerContainer={staggerContainer}
-        imageVariants={imageVariants}
-        contentVariants={contentVariants}
-      />
+
       <MapsSection />
     </main>
   );

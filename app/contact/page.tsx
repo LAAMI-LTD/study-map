@@ -1,371 +1,384 @@
 "use client";
 
 import Link from "next/link";
+import MapsSection from "../components/map";
 
 export default function Contact() {
-    const colors = {
-        white: "#FFFEFE",
-        dustyDenim: "#738DAF",
-        oceanDeep: "#0A63B3",
-        prussianBlue: "#002856",
-        paleSlate: "#87b1ff26",
-        brightMarine: "#00AEEF",
-    };
+  const colors = {
+    white: "#FFFFFF",
+    prussianBlue: "#002856",
+    oceanDeep: "#0A63B3",
+    ink: "#0D1B2A",
+    mist: "#F0F3F7",
+    border: "#DDE3EC",
+    slate: "#8A96A8",
+  };
 
-    return (
-        <section
-            className="relative min-h-screen flex items-center justify-start px-6 md:px-12 overflow-hidden pt-[120px] md:pt-0"
-            style={{ backgroundColor: colors.white }}
-        >
-            {/* Background large text */}
-            <div
-                className="absolute top-1/2 left-0 -translate-y-1/2 text-[6rem] sm:text-[10rem] md:text-[15rem] lg:text-[20rem] font-black italic tracking-tighter select-none pointer-events-none z-0 whitespace-nowrap"
-                style={{ color: colors.paleSlate, opacity: 0.4 }}
-            >
-                CONNECT
-            </div>
+  const contactDetails = [
+    {
+      label: "Address",
+      value: "Sirgoi Plaza, Oginga Odinga Street\nEldoret, Kenya",
+      icon: (
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+          <path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      ),
+    },
+    {
+      label: "Phone",
+      value: "+254 724 801 455",
+      href: "tel:+254724801455",
+      icon: (
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+          <path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.054-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      ),
+    },
+    {
+      label: "Email",
+      value: "studymapconsultants@gmail.com",
+      href: "mailto:studymapconsultants@gmail.com",
+      icon: (
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+          <path d="M3 8l9 6 9-6M5 5h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      ),
+    },
+  ];
 
-            {/* Right side decorative shapes */}
-            <div className="absolute right-0 top-0 w-full lg:w-7/12 h-[50vh] lg:h-full z-10 overflow-hidden">
-                <div
-                    className="absolute -top-20 -right-20 w-80 h-80 lg:w-[500px] lg:h-[500px] rounded-full z-0"
-                    style={{ backgroundColor: colors.prussianBlue, opacity: 0.08 }}
-                />
-                <div
-                    className="absolute bottom-0 left-0 w-40 h-40 lg:w-64 lg:h-64 z-0"
-                    style={{ backgroundColor: colors.oceanDeep, opacity: 0.06 }}
-                />
-                <div
-                    className="absolute top-1/2 right-10 w-32 h-32 lg:w-48 lg:h-48 z-0"
-                    style={{ backgroundColor: colors.dustyDenim, opacity: 0.1 }}
-                />
-            </div>
+  const partnerServices = [
+    "Targeted student recruitment",
+    "Genuine Student screening",
+    "Financial eligibility assessment",
+    "Student counselling support",
+    "Ethical recruitment practices",
+  ];
 
-            {/* Main content */}
-            <div className="relative w-full  z-30 mt-[35vh] lg:mt-0">
-                {/* Header */}
-                <div className=" mb-12">
-                    <div
-                        className="inline-flex items-center gap-3 mb-8 px-5 py-2.5"
-                        style={{
-                            backgroundColor: colors.paleSlate,
-                            borderLeft: `4px solid ${colors.oceanDeep}`,
-                        }}
-                    >
-                        <span
-                            className="font-bold tracking-widest text-[10px] md:text-xs uppercase"
-                            style={{ color: colors.prussianBlue }}
-                        >
-                            Get In Touch
-                        </span>
-                    </div>
+  const faqs = [
+    {
+      q: "Which countries do you support?",
+      a: "We primarily support students from East Africa seeking education opportunities in Australia.",
+    },
+    {
+      q: "Do you help with student visas?",
+      a: "Yes. We provide guidance on student visa application processes and required documentation.",
+    },
+    {
+      q: "Can you help me choose a course?",
+      a: "Absolutely. We provide personalised counselling based on your academic background and career goals.",
+    },
+    {
+      q: "Do you work with Australian institutions?",
+      a: "Yes. We collaborate with partner colleges and institutions across Australia.",
+    },
+  ];
 
-                    <h1 className="text-[3.5rem] sm:text-[5rem] md:text-7xl lg:text-[8rem] font-black leading-[0.9] tracking-tighter mb-6 uppercase">
-                        <span style={{ color: colors.prussianBlue }}>REACH</span>
-                        {" "}
-                        <span
-                            className="stroke-text inline-block"
-                            style={{ WebkitTextStrokeColor: colors.prussianBlue }}
-                        >
-                            OUT
-                        </span>
-                        {" "}
-                        <span style={{ color: colors.oceanDeep }}>TODAY</span>
-                    </h1>
+  return (
+    <section
+      style={{
+        backgroundColor: colors.white,
+        minHeight: "100vh",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,600;1,300&display=swap');
 
-                    <p
-                        className="text-lg md:text-xl font-medium leading-relaxed pl-6 max-w-2xl"
-                        style={{
-                            color: colors.prussianBlue,
-                            borderLeft: `4px solid ${colors.oceanDeep}`,
-                            opacity: 0.85,
-                        }}
-                    >
-                        Our team is here to guide you through every step of the process.
-                        Reach out for support with applications, visa guidance,
-                        pre-departure preparation, and more.
-                    </p>
-                </div>
+        .contact-page { font-family: 'DM Sans', sans-serif; }
 
-                {/* Contact Grid */}
-                <div className="grid gap-6 md:gap-8 lg:grid-cols-2 mb-12">
-                    {/* Contact Information Card */}
-                    <div
-                        className="group rounded-2xl p-6 md:p-8 transition-all duration-300 hover:-translate-y-1"
-                        style={{
-                            backgroundColor: colors.paleSlate,
-                            borderLeft: `4px solid ${colors.oceanDeep}`,
-                        }}
-                    >
-                        <div
-                            className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl"
-                            style={{ backgroundColor: colors.white }}
-                        >
-                            <svg
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"
-                                    fill={colors.oceanDeep}
-                                    fillOpacity="0.7"
-                                />
-                                <circle cx="12" cy="9" r="3" fill={colors.white} />
-                            </svg>
-                        </div>
-                        <h2
-                            className="mb-4 text-2xl md:text-3xl font-bold"
-                            style={{ color: colors.prussianBlue }}
-                        >
-                            Contact Information
-                        </h2>
-                        <div
-                            className="mb-4 space-y-2 text-base leading-relaxed"
-                            style={{ color: colors.prussianBlue, opacity: 0.8 }}
-                        >
-                            <p className="font-semibold" style={{ color: colors.prussianBlue }}>
-                                Study Map Consultants Ltd
-                            </p>
-                            <p>Sirgoi Plaza, Oginga Odinga Street</p>
-                            <p>Eldoret, Kenya</p>
-                            <p>+254 724 801 455</p>
-                        </div>
-                        <div className="pt-4">
-                            <p className="text-sm" style={{ color: colors.prussianBlue, opacity: 0.8 }}>
-                                Email:{" "}
-                                <a
-                                    href="mailto:studymapconsultants@gmail.com"
-                                    className="font-medium transition-colors duration-200"
-                                    style={{ color: colors.oceanDeep }}
-                                >
-                                    studymapconsultants@gmail.com
-                                </a>
-                            </p>
-                        </div>
-                    </div>
-
-                    {/* Partner Support Card */}
-                    <div
-                        className="group rounded-2xl p-6 md:p-8 transition-all duration-300 hover:-translate-y-1"
-                        style={{
-                            backgroundColor: colors.paleSlate,
-                            borderLeft: `4px solid ${colors.dustyDenim}`,
-                        }}
-                    >
-                        <div
-                            className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl"
-                            style={{ backgroundColor: colors.white }}
-                        >
-                            <svg
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M17 20C18.1046 20 19 19.1046 19 18C19 16.8954 18.1046 16 17 16C15.8954 16 15 16.8954 15 18C15 19.1046 15.8954 20 17 20Z"
-                                    stroke={colors.oceanDeep}
-                                    strokeWidth="1.5"
-                                    fill="none"
-                                />
-                                <path
-                                    d="M7 14C8.10457 14 9 13.1046 9 12C9 10.8954 8.10457 10 7 10C5.89543 10 5 10.8954 5 12C5 13.1046 5.89543 14 7 14Z"
-                                    stroke={colors.brightMarine}
-                                    strokeWidth="1.5"
-                                    fill="none"
-                                />
-                                <path
-                                    d="M12 6C13.1046 6 14 5.10457 14 4C14 2.89543 13.1046 2 12 2C10.8954 2 10 2.89543 10 4C10 5.10457 10.8954 6 12 6Z"
-                                    fill={colors.oceanDeep}
-                                    fillOpacity="0.7"
-                                />
-                            </svg>
-                        </div>
-                        <h2
-                            className="mb-4 text-2xl md:text-3xl font-bold"
-                            style={{ color: colors.prussianBlue }}
-                        >
-                            Partner Support
-                        </h2>
-                        <p
-                            className="mb-4 text-base leading-relaxed"
-                            style={{ color: colors.prussianBlue, opacity: 0.8 }}
-                        >
-                            We support Australian colleges and institutions seeking reliable
-                            recruitment support across East Africa with ethical,
-                            compliance-focused processes.
-                        </p>
-                        <ul className="space-y-2 text-sm">
-                            {[
-                                "Targeted student recruitment",
-                                "Genuine Student screening",
-                                "Financial eligibility assessment",
-                                "Student counselling support",
-                                "Ethical recruitment practices",
-                            ].map((item, i) => (
-                                <li key={i} className="flex items-start gap-2">
-                                    <svg
-                                        width="16"
-                                        height="16"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        className="mt-0.5 flex-shrink-0"
-                                    >
-                                        <path
-                                            d="M20 6L9 17L4 12"
-                                            stroke={colors.oceanDeep}
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg>
-                                    <span style={{ color: colors.prussianBlue, opacity: 0.8 }}>
-                                        {item}
-                                    </span>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 md:gap-6 mb-12">
-                    <Link
-                        href="/apply"
-                        className="group flex items-center justify-center gap-4 px-8 py-4 transition-all font-black uppercase tracking-wider text-sm"
-                        style={{
-                            backgroundColor: colors.oceanDeep,
-                            color: colors.white,
-                        }}
-                    >
-                        <span>Apply Now</span>
-                        <div
-                            className="p-1 rounded transition-transform group-hover:translate-x-1"
-                            style={{ backgroundColor: `${colors.white}20` }}
-                        >
-                            <svg
-                                className="w-5 h-5"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    strokeLinecap="square"
-                                    strokeLinejoin="miter"
-                                    strokeWidth="3"
-                                    d="M14 5l7 7m0 0l-7 7m7-7H3"
-                                />
-                            </svg>
-                        </div>
-                    </Link>
-
-                    <Link
-                        href="/consultation"
-                        className="px-8 py-4 transition-all font-black uppercase tracking-wider text-sm text-center"
-                        style={{
-                            border: `2px solid ${colors.oceanDeep}`,
-                            color: colors.oceanDeep,
-                            backgroundColor: "transparent",
-                        }}
-                    >
-                        Schedule Consultation
-                    </Link>
-                </div>
-
-                {/* FAQ Section */}
-                <div
-                    className="rounded-2xl p-6 md:p-8"
-                    style={{
-                        backgroundColor: colors.paleSlate,
-                        borderLeft: `4px solid ${colors.prussianBlue}`,
-                    }}
-                >
-                    <h2
-                        className="text-2xl md:text-3xl font-bold mb-6"
-                        style={{ color: colors.prussianBlue }}
-                    >
-                        Frequently Asked Questions
-                    </h2>
-                    <div className="grid gap-6 md:grid-cols-2">
-                        {[
-                            {
-                                q: "Which countries do you support?",
-                                a: "We primarily support students from East Africa seeking education opportunities in Australia.",
-                            },
-                            {
-                                q: "Do you help with student visas?",
-                                a: "Yes. We provide guidance on student visa application processes and required documentation.",
-                            },
-                            {
-                                q: "Can you help me choose a course?",
-                                a: "Absolutely. We provide personalized counselling based on your academic background and career goals.",
-                            },
-                            {
-                                q: "Do you work with Australian institutions?",
-                                a: "Yes. We collaborate with partner colleges and institutions in Australia.",
-                            },
-                        ].map((faq, i) => (
-                            <div key={i}>
-                                <p
-                                    className="mb-2 font-bold"
-                                    style={{ color: colors.prussianBlue }}
-                                >
-                                    {faq.q}
-                                </p>
-                                <p
-                                    className="text-sm leading-relaxed"
-                                    style={{ color: colors.prussianBlue, opacity: 0.7 }}
-                                >
-                                    {faq.a}
-                                </p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Footer / Back to Home */}
-                <div className="mt-12 pt-8 border-t flex flex-col sm:flex-row justify-between items-center gap-4">
-                    <p className="text-sm" style={{ color: colors.prussianBlue, opacity: 0.6 }}>
-                        Empowering East African students through global education opportunities.
-                    </p>
-                    <Link
-                        href="/"
-                        className="inline-flex items-center justify-center px-6 py-2.5 text-sm font-black uppercase tracking-wider transition-all"
-                        style={{
-                            backgroundColor: colors.prussianBlue,
-                            color: colors.white,
-                        }}
-                    >
-                        Back to Home
-                    </Link>
-                </div>
-            </div>
-
-            <style jsx>{`
-        @keyframes scrollAnim {
-          0% {
-            transform: translateY(-100%);
-          }
-          100% {
-            transform: translateY(200%);
-          }
+        .contact-eyebrow {
+          font-size: 10px;
+          font-weight: 600;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: ${colors.oceanDeep};
+          font-family: 'DM Sans', sans-serif;
         }
 
-        .stroke-text {
-          -webkit-text-stroke-width: 2px;
-          -webkit-text-stroke-color: inherit;
-          color: transparent;
+        .contact-h1 {
+          font-family: 'Cormorant Garamond', serif;
+          font-weight: 600;
+          font-size: clamp(48px, 7vw, 88px);
+          line-height: 0.95;
+          letter-spacing: -0.02em;
+          color: ${colors.prussianBlue};
         }
-        @media (min-width: 768px) {
-          .stroke-text {
-            -webkit-text-stroke-width: 3px;
-          }
+
+        .contact-h1 em {
+          font-style: italic;
+          font-weight: 300;
+          color: ${colors.oceanDeep};
+        }
+
+        .section-heading {
+          font-family: 'Cormorant Garamond', serif;
+          font-weight: 600;
+          font-size: clamp(22px, 2.5vw, 30px);
+          letter-spacing: -0.02em;
+          color: ${colors.prussianBlue};
+          line-height: 1.1;
+        }
+
+        .info-row {
+          display: flex;
+          align-items: flex-start;
+          gap: 12px;
+          padding: 14px 0;
+          border-bottom: 1px solid ${colors.border};
+        }
+        .info-row:first-child { border-top: 1px solid ${colors.border}; }
+
+        .info-icon { color: ${colors.slate}; flex-shrink: 0; margin-top: 1px; }
+        .info-label {
+          font-size: 9px;
+          font-weight: 600;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: ${colors.slate};
+          margin-bottom: 2px;
+          font-family: 'DM Sans', sans-serif;
+        }
+        .info-value {
+          font-size: 13px;
+          color: ${colors.prussianBlue};
+          font-family: 'DM Sans', sans-serif;
+          line-height: 1.5;
+          text-decoration: none;
+          white-space: pre-line;
+        }
+        a.info-value:hover { color: ${colors.oceanDeep}; }
+
+        .partner-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 10px;
+          padding: 10px 0;
+          border-bottom: 1px solid ${colors.border};
+          font-size: 13px;
+          color: ${colors.prussianBlue};
+          font-family: 'DM Sans', sans-serif;
+        }
+        .partner-item:last-child { border-bottom: none; }
+
+        .faq-item {
+          padding: 20px 0;
+          border-bottom: 1px solid ${colors.border};
+        }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-q {
+          font-size: 13px;
+          font-weight: 600;
+          color: ${colors.prussianBlue};
+          font-family: 'DM Sans', sans-serif;
+          margin-bottom: 6px;
+        }
+        .faq-a {
+          font-size: 13px;
+          font-weight: 300;
+          color: ${colors.slate};
+          font-family: 'DM Sans', sans-serif;
+          line-height: 1.65;
+        }
+
+        .cta-primary {
+          font-family: 'DM Sans', sans-serif;
+          font-weight: 600;
+          font-size: 11px;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 14px 28px;
+          background: ${colors.prussianBlue};
+          color: #fff;
+          text-decoration: none;
+          transition: background 0.2s ease;
+          border: none;
+        }
+        .cta-primary:hover { background: ${colors.oceanDeep}; }
+
+        .cta-ghost {
+          font-family: 'DM Sans', sans-serif;
+          font-weight: 500;
+          font-size: 11px;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 14px 28px;
+          border: 1px solid ${colors.border};
+          color: ${colors.prussianBlue};
+          text-decoration: none;
+          transition: border-color 0.2s ease, color 0.2s ease;
+        }
+        .cta-ghost:hover { border-color: ${colors.prussianBlue}; }
+
+        /* Decorative vertical index line */
+        .index-line {
+          position: absolute;
+          left: 0; top: 0; bottom: 0;
+          width: 1px;
+          background: ${colors.border};
         }
       `}</style>
-        </section>
-    );
+
+      <div className="contact-page" style={{ maxWidth: "1200px", margin: "0 auto", padding: "140px 24px 100px" }}>
+
+        {/* ── Hero header ── */}
+        <div style={{ marginBottom: "80px", maxWidth: "720px" }}>
+          <span className="contact-eyebrow" style={{ display: "block", marginBottom: "20px" }}>Get In Touch</span>
+          <h1 className="contact-h1" style={{ marginBottom: "28px" }}>
+            Reach Out<br />
+            <em>Today.</em>
+          </h1>
+          <p style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontWeight: 300,
+            fontSize: "15px",
+            lineHeight: 1.75,
+            color: colors.slate,
+            maxWidth: "460px",
+            paddingLeft: "20px",
+            borderLeft: `2px solid ${colors.border}`,
+          }}>
+            Our team is here to guide you through every step — applications, visa guidance, pre-departure preparation, and everything in between.
+          </p>
+        </div>
+
+        {/* ── CTA buttons ── */}
+        <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "80px" }}>
+          <Link href="/apply" className="cta-primary">
+            Apply Now
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+              <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </Link>
+          <Link href="/consultation" className="cta-ghost">
+            Schedule Consultation
+          </Link>
+        </div>
+
+        {/* ── Three-column content grid ── */}
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          gap: "1px",
+          background: colors.border,
+          border: `1px solid ${colors.border}`,
+          marginBottom: "80px",
+        }}>
+
+          {/* Contact info */}
+          <div style={{ background: colors.white, padding: "36px 32px" }}>
+            <div style={{ marginBottom: "24px" }}>
+              <span className="contact-eyebrow" style={{ display: "block", marginBottom: "10px" }}>Contact</span>
+              <h2 className="section-heading">Study Map<br />Consultants Ltd</h2>
+            </div>
+            <div>
+              {contactDetails.map((item, i) => (
+                <div key={i} className="info-row">
+                  <span className="info-icon">{item.icon}</span>
+                  <div>
+                    <div className="info-label">{item.label}</div>
+                    {item.href ? (
+                      <a href={item.href} className="info-value">{item.value}</a>
+                    ) : (
+                      <div className="info-value">{item.value}</div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Partner support */}
+          <div style={{ background: colors.mist, padding: "36px 32px" }}>
+            <div style={{ marginBottom: "24px" }}>
+              <span className="contact-eyebrow" style={{ display: "block", marginBottom: "10px" }}>For Institutions</span>
+              <h2 className="section-heading">Partner<br />Support</h2>
+            </div>
+            <p style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: 300,
+              fontSize: "13px",
+              lineHeight: 1.7,
+              color: colors.slate,
+              marginBottom: "20px",
+            }}>
+              We support Australian colleges seeking reliable recruitment support across East Africa with ethical, compliance-focused processes.
+            </p>
+            <div>
+              {partnerServices.map((item, i) => (
+                <div key={i} className="partner-item">
+                  <svg width="12" height="12" viewBox="0 0 14 14" fill="none" style={{ flexShrink: 0, marginTop: "2px", color: colors.oceanDeep }}>
+                    <path d="M2 7l3.5 3.5L12 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* FAQ */}
+          <div style={{ background: colors.white, padding: "36px 32px" }}>
+            <div style={{ marginBottom: "24px" }}>
+              <span className="contact-eyebrow" style={{ display: "block", marginBottom: "10px" }}>Common Questions</span>
+              <h2 className="section-heading">FAQ</h2>
+            </div>
+            <div>
+              {faqs.map((faq, i) => (
+                <div key={i} className="faq-item">
+                  <div className="faq-q">{faq.q}</div>
+                  <div className="faq-a">{faq.a}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* ── Footer strip ── */}
+        <div style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",
+          gap: "16px",
+          paddingTop: "28px",
+          borderTop: `1px solid ${colors.border}`,
+        }}>
+          <p style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontWeight: 300,
+            fontSize: "12px",
+            color: colors.slate,
+          }}>
+            Empowering East African students through global education opportunities.
+          </p>
+          <Link href="/" style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontWeight: 600,
+            fontSize: "11px",
+            letterSpacing: "0.1em",
+            textTransform: "uppercase",
+            color: colors.slate,
+            textDecoration: "none",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "6px",
+            transition: "color 0.2s ease",
+          }}
+            onMouseEnter={e => (e.currentTarget.style.color = colors.prussianBlue)}
+            onMouseLeave={e => (e.currentTarget.style.color = colors.slate)}
+          >
+            ← Back to Home
+          </Link>
+        </div>
+      </div>
+      <MapsSection />
+    </section>
+  );
 }
