@@ -56,7 +56,7 @@ export default function Footer() {
     {
       name: "YouTube",
       href: "https://youtube.com",
-      icon: <svg width="13" height="13" viewBox="0 0 576 512" fill="currentColor"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z" /></svg>,
+      icon: <svg width="13" height="13" viewBox="0 0 576 512" fill="currentColor"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305z" /></svg>,
     },
   ];
 
@@ -126,15 +126,15 @@ export default function Footer() {
           font-weight: 500;
           letter-spacing: 0.16em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.3);
+          color: rgba(255,255,255,0.6);
         }
 
         .ft-tagline {
           font-family: 'DM Sans', sans-serif;
-          font-weight: 300;
+          font-weight: 400;
           font-size: 13px;
           line-height: 1.75;
-          color: rgba(255,255,255,0.35);
+          color: rgba(255,255,255,0.7);
           max-width: 260px;
         }
 
@@ -142,9 +142,9 @@ export default function Footer() {
         .ft-socials { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
         .ft-social {
           width: 34px; height: 34px;
-          border: 1px solid rgba(255,255,255,0.1);
+          border: 1px solid rgba(255,255,255,0.15);
           display: flex; align-items: center; justify-content: center;
-          color: rgba(255,255,255,0.3);
+          color: rgba(255,255,255,0.7);
           text-decoration: none;
           transition: border-color 0.2s ease, color 0.2s ease;
         }
@@ -169,7 +169,7 @@ export default function Footer() {
           font-weight: 600;
           letter-spacing: 0.16em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.25);
+          color: rgba(255,255,255,0.5);
           margin-bottom: 20px;
           display: block;
         }
@@ -179,7 +179,7 @@ export default function Footer() {
           font-family: 'DM Sans', sans-serif;
           font-size: 13px;
           font-weight: 400;
-          color: rgba(255,255,255,0.45);
+          color: rgba(255,255,255,0.65);
           text-decoration: none;
           padding: 5px 0;
           border-bottom: 1px solid rgba(255,255,255,0.04);
@@ -200,24 +200,24 @@ export default function Footer() {
           border-bottom: 1px solid rgba(255,255,255,0.04);
         }
         .ft-contact-item:last-child { border-bottom: none; }
-        .ft-contact-icon { color: rgba(255,255,255,0.2); flex-shrink: 0; margin-top: 1px; }
+        .ft-contact-icon { color: rgba(255,255,255,0.5); flex-shrink: 0; margin-top: 1px; }
         .ft-contact-label {
           font-size: 9px;
           font-weight: 600;
           letter-spacing: 0.12em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.2);
+          color: rgba(255,255,255,0.5);
           font-family: 'DM Sans', sans-serif;
           margin-bottom: 1px;
         }
         .ft-contact-val {
           font-size: 12px;
-          color: rgba(255,255,255,0.4);
+          color: rgba(255,255,255,0.65);
           font-family: 'DM Sans', sans-serif;
           text-decoration: none;
           transition: color 0.2s ease;
         }
-        a.ft-contact-val:hover { color: rgba(255,255,255,0.75); }
+        a.ft-contact-val:hover { color: ${colors.white}; }
 
         /* Bottom bar */
         .ft-bottom {
@@ -235,7 +235,7 @@ export default function Footer() {
         .ft-copy {
           font-family: 'DM Sans', sans-serif;
           font-size: 11px;
-          color: rgba(255,255,255,0.2);
+          color: rgba(255,255,255,0.45);
           font-weight: 400;
         }
       `}</style>
@@ -247,7 +247,6 @@ export default function Footer() {
       <div className="ft-top-rule" />
 
       <div className="ft-root ft-inner">
-
         {/* Top: brand + socials */}
         <div className="ft-top">
           <div className="ft-brand">
@@ -272,7 +271,7 @@ export default function Footer() {
               fontWeight: 600,
               letterSpacing: "0.14em",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,0.2)",
+              color: "rgba(255,255,255,0.5)",
             }}>Follow Us</span>
             <div className="ft-socials">
               {socialLinks.map((s) => (
@@ -345,10 +344,47 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div style={{ borderTop: "1px solid rgba(255,255,255,0.05)", position: "relative", zIndex: 3 }}>
+      <div
+        style={{
+          borderTop: "1px solid rgba(255,255,255,0.05)",
+          position: "relative",
+          zIndex: 3,
+        }}
+      >
         <div className="ft-root ft-bottom">
-          <span className="ft-copy">© {currentYear} Study Map Consultants Ltd. All rights reserved.</span>
-          <span className="ft-copy">Empowering East African students through global education.</span>
+          <span className="ft-copy">
+            © {currentYear} Study Map Consultants Ltd. All rights reserved.
+          </span>
+
+          <span className="ft-copy">
+            Empowering East African students through global education.
+          </span>
+
+          <a
+            href="https://laamilabs.co.ke"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ft-copy"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              textDecoration: "none",
+              color: "inherit",
+            }}
+          >
+            <span>Designed & Developed by</span>
+            <Image
+              src="https://laamilabs.co.ke/_next/image?url=%2Flaami.png&w=96&q=75"
+              alt="LAAMI Ltd"
+              width={80}
+              height={20}
+              style={{
+                width: "auto",
+                height: "20px",
+              }}
+            />
+          </a>
         </div>
       </div>
     </footer>

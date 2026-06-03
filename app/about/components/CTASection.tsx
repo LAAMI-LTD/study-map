@@ -153,7 +153,6 @@ export default function CTASection({
           </motion.div>
         </div>
       </motion.div>
-
       {/* Bottom border rule */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-white/10 z-10" />
     </section>
