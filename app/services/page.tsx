@@ -70,6 +70,10 @@ export default async function ServicesPage() {
           display: flex;
           flex-direction: column;
           transition: border-color 0.2s ease, box-shadow 0.2s ease;
+          cursor: pointer;
+          text-decoration: none;
+          color: inherit;
+          height: 100%;
         }
         .sp-card:hover {
           border-color: #0A63B3;
@@ -139,8 +143,13 @@ export default async function ServicesPage() {
           gap: 6px;
           margin-top: 16px;
           transition: gap 0.2s ease;
+          pointer-events: none;
         }
-        .sp-card-link:hover { gap: 10px; }
+        
+        /* Make the arrow in the link visible but non-clickable since the whole card is clickable */
+        .sp-card-link svg {
+          pointer-events: none;
+        }
 
         .sp-card-arrow {
           position: absolute;
@@ -156,6 +165,7 @@ export default async function ServicesPage() {
           opacity: 0;
           transform: translate(4px, -4px);
           transition: opacity 0.2s ease, transform 0.2s ease;
+          pointer-events: none;
         }
 
         /* CTA Button */
@@ -315,8 +325,11 @@ export default async function ServicesPage() {
             }}>
               {services.map((service, i) => (
                 <div key={service._id} className="sp-card-wrap">
-                  <article className="sp-card" style={{ height: "100%" }}>
-
+                  <Link 
+                    href={`/services/${service.slug.current}`} 
+                    className="sp-card"
+                    style={{ height: "100%", display: "block" }}
+                  >
                     {/* Image */}
                     {service.heroImage && (
                       <div style={{ height: "200px", overflow: "hidden", position: "relative", flexShrink: 0 }}>
@@ -345,14 +358,14 @@ export default async function ServicesPage() {
                       </span>
                       <div className="sp-card-title">{service.title}</div>
                       <p className="sp-card-summary">{service.summary}</p>
-                      <Link href={`/services/${service.slug.current}`} className="sp-card-link">
+                      <div className="sp-card-link">
                         Learn More
                         <svg width="11" height="11" viewBox="0 0 14 14" fill="none">
                           <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
-                      </Link>
+                      </div>
                     </div>
-                  </article>
+                  </Link>
                 </div>
               ))}
             </div>

@@ -19,7 +19,7 @@ export default function Services() {
       title: "Student Counselling",
       description:
         "We help students identify suitable courses, institutions, and career pathways aligned with their goals and academic background.",
-      link: "#",
+      link: "/services/student-counselling",
       icon: (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
           <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" fill="currentColor" />
@@ -55,7 +55,7 @@ export default function Services() {
       title: "Pre-Departure Prep",
       description:
         "Guidance on travel, accommodation, cultural adjustment, and everything needed before you arrive at your destination.",
-      link: "#",
+      link: "/services/pre-departure-prep",
       icon: (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
           <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 4C16.41 4 20 7.59 20 12C20 13.39 19.64 14.68 19.05 15.85L15.15 11.95L12 15.1L8.85 11.95L4.95 15.85C4.36 14.68 4 13.39 4 12C4 7.59 7.59 4 12 4Z" fill="currentColor" />
@@ -67,7 +67,7 @@ export default function Services() {
       title: "Career Pathway Planning",
       description:
         "Strategic long-term guidance on career outcomes, graduate employment trends, and post-study opportunities.",
-      link: "#",
+      link: "/services/career-pathway-planning",
       icon: (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
           <path d="M3 13H8V21H3V13ZM10 8H15V21H10V8ZM17 3H22V21H17V3Z" fill="currentColor" />

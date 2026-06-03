@@ -29,7 +29,7 @@ async function getService(slug: string): Promise<Service | null> {
       contactMessage
     }
   `;
-  
+
   const params = { slug };
   return await client.fetch(query, params);
 }
@@ -104,7 +104,6 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
         .sd-page { 
           font-family: 'DM Sans', sans-serif; 
-          overflow-x: hidden;
         }
 
         .sd-eyebrow {
@@ -212,6 +211,36 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         .sd-back-link:hover {
           gap: 10px;
         }
+
+.sd-icon-square {
+  width: 80px;
+  height: 80px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(10, 99, 179, 0.06);
+
+  border-left: 4px solid #0A63B3;
+
+  margin-bottom: 24px;
+
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+
+/* Optional hover effect */
+.sd-icon-square:hover {
+  background: rgba(10, 99, 179, 0.1);
+  border-left-width: 6px;
+}
+
+.sd-icon-square img {
+  width: 55%;
+  height: 55%;
+  object-fit: contain;
+}
 
         /* Hero Section */
         .sd-hero {
@@ -321,7 +350,6 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           }
         }
 
-        /* Right Column - Sticky on Desktop */
         .sd-form-column {
           width: 100%;
         }
@@ -334,7 +362,6 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           }
         }
 
-        /* Responsive Images */
         .sd-hero-image {
           position: absolute;
           inset: 0;
@@ -346,7 +373,6 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           opacity: 0.22;
         }
 
-        /* Gradient Overlay */
         .sd-gradient-overlay {
           position: absolute;
           inset: 0;
@@ -360,7 +386,6 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           }
         }
 
-        /* Rules */
         .sd-rule-top, .sd-rule-bottom {
           position: absolute;
           left: 0;
@@ -402,6 +427,17 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             <span className="sd-eyebrow" style={{ display: "block", marginBottom: "16px", color: "#4A9FE0" }}>
               Our Service
             </span>
+
+            {/* Square Icon */}
+            {service.icon && (
+              <div className="sd-icon-square">
+                <img
+                  src={urlFor(service.icon).url()}
+                  alt={`${service.title} icon`}
+                />
+              </div>
+            )}
+
             <h1 className="sd-h1 sd-hero-title">
               {service.title}
             </h1>
@@ -414,15 +450,14 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         {/* Main Content */}
         <section className="sd-main-content">
           <div className="sd-grid">
-            
             {/* Left Column - Overview */}
             <div>
               {service.fullDescription && service.fullDescription.length > 0 && (
                 <>
                   <h2 className="sd-section-heading">Overview</h2>
                   <div>
-                    <PortableText 
-                      value={service.fullDescription} 
+                    <PortableText
+                      value={service.fullDescription}
                       components={portableTextComponents}
                     />
                   </div>
@@ -432,8 +467,8 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
             {/* Right Column - Contact Form */}
             <div className="sd-form-column">
-              <ContactForm 
-                serviceTitle={service.title} 
+              <ContactForm
+                serviceTitle={service.title}
                 contactMessage={service.contactMessage}
               />
             </div>
