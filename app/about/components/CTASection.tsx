@@ -17,7 +17,7 @@ export default function CTASection({
   contentVariants,
 }: Props) {
   return (
-    <section className="relative overflow-hidden bg-[#F0F3F7] dark:bg-[#0D1B2A]">
+    <section className="relative overflow-hidden bg-[#0D1B2A]">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,600;1,300&display=swap');
         .cta-section { font-family: 'DM Sans', sans-serif; }
@@ -33,7 +33,7 @@ export default function CTASection({
         }
       `}</style>
 
-      {/* Video — low opacity, respects light/dark */}
+      {/* Video — low opacity */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <video
           autoPlay
@@ -42,7 +42,7 @@ export default function CTASection({
           playsInline
           preload="metadata"
           poster="/hero.jpg"
-          className="absolute inset-0 h-full w-full object-cover opacity-[0.18]"
+          className="absolute inset-0 h-full w-full object-cover opacity-[0.12]"
         >
           <source src="/streak.webm" type="video/webm" />
           <source src="/streak.mp4" type="video/mp4" />
@@ -50,7 +50,7 @@ export default function CTASection({
       </div>
 
       {/* Top border rule */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-[#DDE3EC] dark:bg-white/10 z-10" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-white/10 z-10" />
 
       <motion.div
         className="cta-section relative z-10 mx-auto max-w-[1200px] px-6 py-20 sm:px-8 lg:px-12 lg:py-28"
@@ -87,7 +87,7 @@ export default function CTASection({
           >
             {/* Eyebrow */}
             <motion.span
-              className="inline-block text-[10px] font-semibold tracking-[0.16em] uppercase text-[#0A63B3] dark:text-[#4A9FE0] mb-5"
+              className="inline-block text-[10px] font-semibold tracking-[0.16em] uppercase text-[#4A9FE0] mb-5"
               variants={fadeUp}
             >
               Ready to Begin?
@@ -95,7 +95,7 @@ export default function CTASection({
 
             {/* Headline */}
             <motion.h2
-              className="cta-heading text-[clamp(32px,4vw,52px)] text-[#002856] dark:text-white mb-6"
+              className="cta-heading text-[clamp(32px,4vw,52px)] text-white mb-6"
               variants={fadeUp}
             >
               Take the First Step<br />
@@ -104,7 +104,7 @@ export default function CTASection({
 
             {/* Body */}
             <motion.p
-              className="text-sm font-light leading-relaxed text-[#4B5563] dark:text-white/70 max-w-[380px] mx-auto lg:mx-0 mb-10"
+              className="text-sm font-light leading-relaxed text-white/70 max-w-[380px] mx-auto lg:mx-0 mb-10"
               variants={fadeUp}
             >
               Get in touch with our team today. We'll help you navigate every step — from choosing the right institution to arriving ready on the other side of the world.
@@ -123,9 +123,8 @@ export default function CTASection({
                 <Link
                   href="/contact"
                   className="inline-flex items-center gap-3 px-7 py-3.5 text-[11px] font-semibold tracking-[0.1em] uppercase
-                    bg-[#002856] text-white
-                    dark:bg-white dark:text-[#002856]
-                    hover:bg-[#0A63B3] dark:hover:bg-[#DDE3EC]
+                    bg-white text-[#002856]
+                    hover:bg-[#DDE3EC]
                     transition-colors duration-200"
                 >
                   Contact Us Today
@@ -143,10 +142,8 @@ export default function CTASection({
                 <Link
                   href="/services"
                   className="inline-flex items-center gap-3 px-7 py-3.5 text-[11px] font-semibold tracking-[0.1em] uppercase
-                    border border-[#DDE3EC] text-[#002856]
-                    dark:border-white/20 dark:text-white/70
-                    hover:border-[#002856] hover:text-[#002856]
-                    dark:hover:border-white/50 dark:hover:text-white
+                    border border-white/20 text-white/70
+                    hover:border-white/50 hover:text-white
                     transition-colors duration-200"
                 >
                   Our Services
@@ -158,7 +155,7 @@ export default function CTASection({
       </motion.div>
 
       {/* Bottom border rule */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-[#DDE3EC] dark:bg-white/10 z-10" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-white/10 z-10" />
     </section>
   );
 }
