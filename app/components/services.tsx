@@ -19,6 +19,7 @@ export default function Services() {
       title: "Student Counselling",
       description:
         "We help students identify suitable courses, institutions, and career pathways aligned with their goals and academic background.",
+      link: "#",
       icon: (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
           <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" fill="currentColor" />
@@ -30,6 +31,7 @@ export default function Services() {
       title: "Visa Guidance",
       description:
         "Expert support on student visa requirements, documentation preparation, and compliance throughout the application process.",
+      link: "/services/visa-guidance",
       icon: (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
           <path d="M5 20H19V18H5V20ZM5 4H19V2H5V4ZM12 8C13.1 8 14 8.9 14 10C14 11.1 13.1 12 12 12C10.9 12 10 11.1 10 10C10 8.9 10.9 8 12 8ZM12 6C9.79 6 8 7.79 8 10C8 12.21 9.79 14 12 14C14.21 14 16 12.21 16 10C16 7.79 14.21 6 12 6Z" fill="currentColor" />
@@ -41,6 +43,7 @@ export default function Services() {
       title: "Applications Support",
       description:
         "Assistance with preparing and submitting polished, professional applications to partner institutions worldwide.",
+      link: "/services/applications-support",
       icon: (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
           <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM7 7H17V9H7V7ZM7 11H17V13H7V11ZM7 15H14V17H7V15Z" fill="currentColor" />
@@ -52,6 +55,7 @@ export default function Services() {
       title: "Pre-Departure Prep",
       description:
         "Guidance on travel, accommodation, cultural adjustment, and everything needed before you arrive at your destination.",
+      link: "#",
       icon: (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
           <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 4C16.41 4 20 7.59 20 12C20 13.39 19.64 14.68 19.05 15.85L15.15 11.95L12 15.1L8.85 11.95L4.95 15.85C4.36 14.68 4 13.39 4 12C4 7.59 7.59 4 12 4Z" fill="currentColor" />
@@ -63,6 +67,7 @@ export default function Services() {
       title: "Career Pathway Planning",
       description:
         "Strategic long-term guidance on career outcomes, graduate employment trends, and post-study opportunities.",
+      link: "#",
       icon: (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
           <path d="M3 13H8V21H3V13ZM10 8H15V21H10V8ZM17 3H22V21H17V3Z" fill="currentColor" />
@@ -74,6 +79,7 @@ export default function Services() {
       title: "English Test Preparation",
       description:
         "Resources and referrals for IELTS and PTE preparation to help you meet university language entry requirements.",
+      link: "/services/english-test-preparation",
       icon: (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
           <path d="M4 6H20V4H4V6ZM4 10H20V8H4V10ZM4 14H20V12H4V14ZM4 18H14V16H4V18Z" fill="currentColor" />
@@ -85,6 +91,7 @@ export default function Services() {
       title: "Scholarship Assistance",
       description:
         "Support in identifying scholarship opportunities and preparing strong applications to maximize funding prospects.",
+      link: "#",
       icon: (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
           <path d="M12 3L2 8L12 13L20 9V15H22V8L12 3ZM6 12V16C6 18.21 8.69 20 12 20C15.31 20 18 18.21 18 16V12L12 15L6 12Z" fill="currentColor" />
@@ -96,6 +103,7 @@ export default function Services() {
       title: "Accommodation Support",
       description:
         "Assistance in securing suitable student accommodation, including university residences and private housing options.",
+      link: "#",
       icon: (
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
           <path d="M12 3L3 10V21H10V15H14V21H21V10L12 3ZM19 19H16V13H8V19H5V11L12 5.5L19 11V19Z" fill="currentColor" />
@@ -141,7 +149,11 @@ export default function Services() {
           font-size: 15px;
           line-height: 1.7;
           color: ${colors.slate};
-          // max-width: 380px;
+        }
+
+        .svc-card-link {
+          text-decoration: none;
+          display: block;
         }
 
         .svc-card {
@@ -150,20 +162,21 @@ export default function Services() {
           position: relative;
           transition: border-color 0.2s ease, box-shadow 0.2s ease;
           background: ${colors.white};
-          cursor: default;
+          cursor: pointer;
+          height: 100%;
         }
 
-        .svc-card:hover {
+        .svc-card-link:hover .svc-card {
           border-color: ${colors.oceanDeep};
           box-shadow: 0 8px 32px rgba(10,99,179,0.08);
         }
 
-        .svc-card:hover .svc-card-arrow {
+        .svc-card-link:hover .svc-card-arrow {
           opacity: 1;
           transform: translate(0, 0);
         }
 
-        .svc-card:hover .svc-card-icon {
+        .svc-card-link:hover .svc-card-icon {
           color: ${colors.oceanDeep};
         }
 
@@ -184,7 +197,7 @@ export default function Services() {
           margin-bottom: 16px;
         }
 
-        .svc-card:hover .svc-card-icon {
+        .svc-card-link:hover .svc-card-icon {
           opacity: 1;
         }
 
@@ -203,6 +216,7 @@ export default function Services() {
           font-size: 13px;
           line-height: 1.65;
           color: ${colors.slate};
+          margin-bottom: 0;
         }
 
         .svc-card-arrow {
@@ -284,17 +298,23 @@ export default function Services() {
           border: `1px solid ${colors.border}`,
         }}>
           {services.map((service, i) => (
-            <div key={i} className="svc-card" style={{ background: colors.white }}>
-              <span className="svc-num">{service.number}</span>
-              <div className="svc-card-icon">{service.icon}</div>
-              <div className="svc-card-title">{service.title}</div>
-              <p className="svc-card-desc">{service.description}</p>
-              <div className="svc-card-arrow">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
+            <Link 
+              key={i} 
+              href={service.link} 
+              className="svc-card-link"
+            >
+              <div className="svc-card" style={{ background: colors.white }}>
+                <span className="svc-num">{service.number}</span>
+                <div className="svc-card-icon">{service.icon}</div>
+                <div className="svc-card-title">{service.title}</div>
+                <p className="svc-card-desc">{service.description}</p>
+                <div className="svc-card-arrow">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 

@@ -32,14 +32,44 @@ export default function MapsSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Create WhatsApp message
+    const phoneNumber = "254724801455"; // Without + sign for WhatsApp API
+    const message = `*New Contact Form Submission*%0A%0A*Name:* ${formData.name}%0A*Email:* ${formData.email}%0A*Message:* ${formData.message}`;
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+    
+    // Open WhatsApp
+    window.open(whatsappUrl, "_blank");
+    
+    // If copy to self is checked, also open WhatsApp for the user
+    if (formData.copyToSelf && formData.email) {
+      // Note: WhatsApp requires phone number, email can't receive WhatsApp messages directly
+      // Instead, we show an alert or could open a second WhatsApp with user's number if provided
+      setTimeout(() => {
+        alert("A copy of this message has been sent to the consultant. You will receive a response on WhatsApp shortly.");
+      }, 500);
+    }
+    
     setSubmitted(true);
   };
 
   const contactItems = [
     {
+      label: "WhatsApp",
+      value: "+254 724 801 455",
+      href: "https://wa.me/254724801455",
+      icon: (
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2C6.5 2 2 6.5 2 12c0 2.2.7 4.3 2 6L2.5 21.5 7 20c1.7 1 3.5 1.5 5.5 1.5 5.5 0 10-4.5 10-10S17.5 2 12 2z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+          <path d="M8.5 9.5c.3-.8 1.2-1.5 2-1.5.8 0 1.5.5 1.8 1.2.3.7.5 1.5.5 2.3 0 1-.3 2-.8 2.8-.5.8-1.2 1.5-2 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M15 15c.8-.5 1.5-1.2 2-2 .5-.8.8-1.8.8-2.8 0-.8-.2-1.6-.5-2.3-.3-.7-1-1.2-1.8-1.2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      ),
+    },
+    {
       label: "Email",
-      value: "info@studymap.com",
-      href: "mailto:info@studymap.com",
+      value: "studymapconsultants@gmail.com",
+      href: "mailto:studymapconsultants@gmail.com",
       icon: (
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
           <path d="M3 8l9 6 9-6M5 5h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -47,9 +77,9 @@ export default function MapsSection() {
       ),
     },
     {
-      label: "Mobile",
-      value: "+254 987 654 321",
-      href: "tel:+254987654321",
+      label: "Phone",
+      value: "+254 724 801 455",
+      href: "tel:+254724801455",
       icon: (
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
           <path d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -57,19 +87,9 @@ export default function MapsSection() {
       ),
     },
     {
-      label: "Landline",
-      value: "(0421) 431 2030",
-      href: "tel:04214312030",
-      icon: (
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-          <path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.054-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      ),
-    },
-    {
       label: "Address",
       value: "Sirgoi Plaza, Eldoret, Kenya",
-      href: "https://maps.google.com",
+      href: "https://maps.google.com/?q=Sirgoi+Plaza+Eldoret+Kenya",
       icon: (
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
           <path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -258,7 +278,7 @@ export default function MapsSection() {
                   </svg>
                 </div>
                 <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "13px", color: colors.slate, lineHeight: 1.7 }}>
-                  Thank you — we've received your message and will be in touch shortly.
+                  Thank you! Your message has been sent via WhatsApp. Our team will respond shortly.
                 </p>
               </div>
             ) : (
@@ -343,7 +363,7 @@ export default function MapsSection() {
                 </label>
 
                 <button type="submit" className="submit-btn">
-                  Send Message
+                  Send via WhatsApp
                   <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
                     <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
@@ -372,7 +392,7 @@ export default function MapsSection() {
                   key={i}
                   href={item.href}
                   className="contact-item"
-                  target={item.label === "Address" ? "_blank" : undefined}
+                  target={item.label === "Address" || item.label === "WhatsApp" ? "_blank" : undefined}
                   rel="noopener noreferrer"
                 >
                   <span className="contact-icon">{item.icon}</span>

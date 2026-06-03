@@ -74,6 +74,13 @@ export default function Contact() {
     },
   ];
 
+  const scrollToConsult = () => {
+    const consultSection = document.getElementById("consult");
+    if (consultSection) {
+      consultSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section
       style={{
@@ -197,6 +204,7 @@ export default function Contact() {
           text-decoration: none;
           transition: background 0.2s ease;
           border: none;
+          cursor: pointer;
         }
         .cta-primary:hover { background: ${colors.oceanDeep}; }
 
@@ -214,6 +222,8 @@ export default function Contact() {
           color: ${colors.prussianBlue};
           text-decoration: none;
           transition: border-color 0.2s ease, color 0.2s ease;
+          cursor: pointer;
+          background: transparent;
         }
         .cta-ghost:hover { border-color: ${colors.prussianBlue}; }
 
@@ -251,15 +261,15 @@ export default function Contact() {
 
         {/* ── CTA buttons ── */}
         <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "80px" }}>
-          <Link href="/apply" className="cta-primary">
+          <Link href="#consult" className="cta-primary">
             Apply Now
             <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
               <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </Link>
-          <Link href="/consultation" className="cta-ghost">
+          <button onClick={scrollToConsult} className="cta-ghost">
             Schedule Consultation
-          </Link>
+          </button>
         </div>
 
         {/* ── Three-column content grid ── */}
@@ -378,7 +388,9 @@ export default function Contact() {
           </Link>
         </div>
       </div>
-      <MapsSection />
+      <div id="consult">
+        <MapsSection />
+      </div>
     </section>
   );
 }

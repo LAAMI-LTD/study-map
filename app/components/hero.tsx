@@ -33,8 +33,8 @@ export default function Hero() {
     }, []);
 
     const stats = [
-        { number: "10+", label: "Years Experience" },
-        { number: "500+", label: "Students Placed" },
+        { number: "5+", label: "Years Experience" },
+        { number: "50+", label: "Students Placed" },
         { number: "8+", label: "Partner Universities" },
     ];
 
