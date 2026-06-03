@@ -4,257 +4,353 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function Footer() {
-    const colors = {
-        white: "#FFFEFE",
-        dustyDenim: "#738DAF",
-        oceanDeep: "#0A63B3",
-        prussianBlue: "#002856",
-        paleSlate: "#C7CDD8",
-    };
+  const colors = {
+    white: "#FFFFFF",
+    prussianBlue: "#002856",
+    oceanDeep: "#0A63B3",
+    ink: "#0D1B2A",
+    mist: "#F0F3F7",
+    border: "#DDE3EC",
+    slate: "#8A96A8",
+  };
 
-    const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear();
 
-    const companyLinks = [
-        { name: "About Us", href: "/about" },
-        { name: "Terms & Conditions", href: "/terms" },
-        { name: "Privacy Policy", href: "/privacy" },
-        { name: "Contact Us", href: "/contact" },
-    ];
+  const companyLinks = [
+    { name: "About Us", href: "/about" },
+    { name: "Services", href: "/services" },
+    { name: "Contact Us", href: "/contact" },
+    { name: "Terms & Conditions", href: "/terms" },
+    { name: "Privacy Policy", href: "/privacy" },
+  ];
 
-    const blogLinks = [
-        { name: "Study in Australia Guide", href: "/blog/study-guide" },
-        { name: "Visa Application Tips", href: "/blog/visa-tips" },
-        { name: "Scholarship Opportunities", href: "/blog/scholarships" },
-        { name: "Student Life in Australia", href: "/blog/student-life" },
-        { name: "See More Articles", href: "/blog" },
-    ];
+  const resourceLinks = [
+    { name: "Study in Australia Guide", href: "/blog/study-guide" },
+    { name: "Visa Application Tips", href: "/blog/visa-tips" },
+    { name: "Scholarship Opportunities", href: "/blog/scholarships" },
+    { name: "Student Life in Australia", href: "/blog/student-life" },
+    { name: "See More Articles", href: "/blog" },
+  ];
 
-    const socialLinks = [
-        {
-            name: "Facebook",
-            href: "https://facebook.com",
-            icon: (
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 320 512">
-                    <path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z" />
-                </svg>
-            ),
-        },
-        {
-            name: "Twitter",
-            href: "https://twitter.com",
-            icon: (
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 512 512">
-                    <path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z" />
-                </svg>
-            ),
-        },
-        {
-            name: "Instagram",
-            href: "https://instagram.com",
-            icon: (
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 448 512">
-                    <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
-                </svg>
-            ),
-        },
-        {
-            name: "LinkedIn",
-            href: "https://linkedin.com",
-            icon: (
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 448 512">
-                    <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z" />
-                </svg>
-            ),
-        },
-        {
-            name: "YouTube",
-            href: "https://youtube.com",
-            icon: (
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 576 512">
-                    <path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z" />
-                </svg>
-            ),
-        },
-    ];
+  const socialLinks = [
+    {
+      name: "Facebook",
+      href: "https://facebook.com",
+      icon: <svg width="13" height="13" viewBox="0 0 320 512" fill="currentColor"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z" /></svg>,
+    },
+    {
+      name: "Twitter",
+      href: "https://twitter.com",
+      icon: <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.734-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>,
+    },
+    {
+      name: "Instagram",
+      href: "https://instagram.com",
+      icon: <svg width="13" height="13" viewBox="0 0 448 512" fill="currentColor"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" /></svg>,
+    },
+    {
+      name: "LinkedIn",
+      href: "https://linkedin.com",
+      icon: <svg width="13" height="13" viewBox="0 0 448 512" fill="currentColor"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z" /></svg>,
+    },
+    {
+      name: "YouTube",
+      href: "https://youtube.com",
+      icon: <svg width="13" height="13" viewBox="0 0 576 512" fill="currentColor"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z" /></svg>,
+    },
+  ];
 
-    return (
-        <footer className="relative w-full overflow-hidden">
-            {/* Background Image with Overlay */}
-            <div className="absolute inset-0 z-0">
-                <Image
-                    src="/australia.jpg"
-                    alt="Australia background"
-                    fill
-                    className="object-cover"
-                    quality={100}
-                />
-                <div className="absolute inset-0 bg-black/70" />
+  return (
+    <footer style={{ position: "relative", overflow: "hidden", backgroundColor: colors.ink }}>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,600;1,300&display=swap');
+
+        .ft-root { font-family: 'DM Sans', sans-serif; }
+
+        /* Background image */
+        .ft-bg {
+          position: absolute;
+          inset: 0;
+          z-index: 0;
+        }
+        .ft-bg img {
+          object-fit: cover;
+          opacity: 0.07;
+        }
+
+        /* Rules */
+        .ft-top-rule {
+          position: absolute;
+          top: 0; left: 0; right: 0;
+          height: 1px;
+          background: rgba(255,255,255,0.07);
+          z-index: 2;
+        }
+
+        /* Content */
+        .ft-inner {
+          position: relative;
+          z-index: 3;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 72px 24px 0;
+        }
+
+        /* Top strip: logo + tagline + socials */
+        .ft-top {
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          gap: 40px;
+          flex-wrap: wrap;
+          padding-bottom: 48px;
+          border-bottom: 1px solid rgba(255,255,255,0.07);
+          margin-bottom: 48px;
+        }
+
+        .ft-brand { display: flex; flex-direction: column; gap: 16px; max-width: 300px; }
+
+        .ft-logo-row { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+
+        .ft-brand-name {
+          font-family: 'Cormorant Garamond', serif;
+          font-weight: 600;
+          font-size: 18px;
+          color: ${colors.white};
+          letter-spacing: -0.01em;
+          line-height: 1.1;
+        }
+        .ft-brand-sub {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 9px;
+          font-weight: 500;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: rgba(255,255,255,0.3);
+        }
+
+        .ft-tagline {
+          font-family: 'DM Sans', sans-serif;
+          font-weight: 300;
+          font-size: 13px;
+          line-height: 1.75;
+          color: rgba(255,255,255,0.35);
+          max-width: 260px;
+        }
+
+        /* Socials */
+        .ft-socials { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+        .ft-social {
+          width: 34px; height: 34px;
+          border: 1px solid rgba(255,255,255,0.1);
+          display: flex; align-items: center; justify-content: center;
+          color: rgba(255,255,255,0.3);
+          text-decoration: none;
+          transition: border-color 0.2s ease, color 0.2s ease;
+        }
+        .ft-social:hover {
+          border-color: ${colors.oceanDeep};
+          color: ${colors.oceanDeep};
+        }
+
+        /* Link columns grid */
+        .ft-links-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+          gap: 48px 40px;
+          padding-bottom: 56px;
+          border-bottom: 1px solid rgba(255,255,255,0.07);
+          margin-bottom: 0;
+        }
+
+        .ft-col-label {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 9px;
+          font-weight: 600;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: rgba(255,255,255,0.25);
+          margin-bottom: 20px;
+          display: block;
+        }
+
+        .ft-link {
+          display: block;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 13px;
+          font-weight: 400;
+          color: rgba(255,255,255,0.45);
+          text-decoration: none;
+          padding: 5px 0;
+          border-bottom: 1px solid rgba(255,255,255,0.04);
+          transition: color 0.2s ease, padding-left 0.2s ease;
+        }
+        .ft-link:last-child { border-bottom: none; }
+        .ft-link:hover {
+          color: ${colors.white};
+          padding-left: 4px;
+        }
+
+        /* Contact column */
+        .ft-contact-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 10px;
+          padding: 6px 0;
+          border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .ft-contact-item:last-child { border-bottom: none; }
+        .ft-contact-icon { color: rgba(255,255,255,0.2); flex-shrink: 0; margin-top: 1px; }
+        .ft-contact-label {
+          font-size: 9px;
+          font-weight: 600;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: rgba(255,255,255,0.2);
+          font-family: 'DM Sans', sans-serif;
+          margin-bottom: 1px;
+        }
+        .ft-contact-val {
+          font-size: 12px;
+          color: rgba(255,255,255,0.4);
+          font-family: 'DM Sans', sans-serif;
+          text-decoration: none;
+          transition: color 0.2s ease;
+        }
+        a.ft-contact-val:hover { color: rgba(255,255,255,0.75); }
+
+        /* Bottom bar */
+        .ft-bottom {
+          position: relative;
+          z-index: 3;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 20px 24px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+        .ft-copy {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 11px;
+          color: rgba(255,255,255,0.2);
+          font-weight: 400;
+        }
+      `}</style>
+
+      {/* Background image */}
+      <div className="ft-bg">
+        <Image src="/australia.jpg" alt="" fill quality={80} aria-hidden />
+      </div>
+      <div className="ft-top-rule" />
+
+      <div className="ft-root ft-inner">
+
+        {/* Top: brand + socials */}
+        <div className="ft-top">
+          <div className="ft-brand">
+            <Link href="/" className="ft-logo-row">
+              <div style={{ position: "relative", width: "32px", height: "32px", flexShrink: 0 }}>
+                <Image src="/smlogo.png" alt="Study Map Consultants" fill className="object-contain" style={{ filter: "brightness(0) invert(1)" }} />
+              </div>
+              <div>
+                <div className="ft-brand-name">Study Map</div>
+                <div className="ft-brand-sub">Consultants Ltd</div>
+              </div>
+            </Link>
+            <p className="ft-tagline">
+              Expert guidance for East African students seeking quality education in Australia — from first consultation to arrival.
+            </p>
+          </div>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "12px", alignItems: "flex-end" }}>
+            <span style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: "9px",
+              fontWeight: 600,
+              letterSpacing: "0.14em",
+              textTransform: "uppercase",
+              color: "rgba(255,255,255,0.2)",
+            }}>Follow Us</span>
+            <div className="ft-socials">
+              {socialLinks.map((s) => (
+                <a key={s.name} href={s.href} className="ft-social" target="_blank" rel="noopener noreferrer" title={s.name}>
+                  {s.icon}
+                </a>
+              ))}
             </div>
+          </div>
+        </div>
 
-            {/* Main Footer Content */}
-            <div className="relative z-10 mx-auto max-w-7xl px-6 py-12 sm:px-8 lg:px-12 lg:py-16">
-                <div className="flex flex-wrap justify-between -mx-4">
-                    {/* Company Info Column */}
-                    <div className="px-4 my-4 w-full xl:w-1/3">
-                        <div className="relative h-20 w-20 sm:h-24 sm:w-24 mb-6">
-                            <Image
-                                src="/smlogo.png"
-                                alt="Study Map Consultants Logo"
-                                fill
-                                priority
-                                sizes="(max-width: 640px) 224px, 288px"
-                                className="object-contain brightness-0 invert"
-                            />
-                        </div>
-                        <p
-                            className="text-sm leading-relaxed text-justify"
-                            style={{ color: colors.paleSlate, opacity: 0.85 }}
-                        >
-                            Study Map Consultants Ltd provides expert guidance for East African
-                            students seeking quality education in Australia. We support students
-                            at every stage — from counselling to visa guidance and pre-departure
-                            preparation.
-                        </p>
-                    </div>
+        {/* Link columns */}
+        <div className="ft-links-grid">
 
-                    {/* Company Links Column */}
-                    <div className="px-4 my-4 w-full sm:w-auto">
-                        <div className="mb-4">
-                            <h2
-                                className="inline-block text-xl font-bold pb-3 mb-2 border-b-2"
-                                style={{
-                                    color: colors.white,
-                                    borderBottomColor: colors.oceanDeep,
-                                }}
-                            >
-                                Company
-                            </h2>
-                        </div>
-                        <ul className="space-y-2">
-                            {companyLinks.map((link) => (
-                                <li key={link.name}>
-                                    <Link
-                                        href={link.href}
-                                        className="transition-colors duration-200 text-sm"
-                                        style={{ color: colors.paleSlate, opacity: 0.8 }}
-                                        onMouseEnter={(e) => {
-                                            e.currentTarget.style.color = colors.oceanDeep;
-                                            e.currentTarget.style.opacity = "1";
-                                        }}
-                                        onMouseLeave={(e) => {
-                                            e.currentTarget.style.color = colors.paleSlate;
-                                            e.currentTarget.style.opacity = "0.8";
-                                        }}
-                                    >
-                                        {link.name}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+          {/* Company */}
+          <div>
+            <span className="ft-col-label">Company</span>
+            {companyLinks.map((l) => (
+              <Link key={l.name} href={l.href} className="ft-link">{l.name}</Link>
+            ))}
+          </div>
 
-                    {/* Blog Links Column */}
-                    <div className="px-4 my-4 w-full sm:w-auto">
-                        <div className="mb-4">
-                            <h2
-                                className="inline-block text-xl font-bold pb-3 mb-2 border-b-2"
-                                style={{
-                                    color: colors.white,
-                                    borderBottomColor: colors.oceanDeep,
-                                }}
-                            >
-                                Resources
-                            </h2>
-                        </div>
-                        <ul className="space-y-2">
-                            {blogLinks.map((link) => (
-                                <li key={link.name}>
-                                    <Link
-                                        href={link.href}
-                                        className="transition-colors duration-200 text-sm"
-                                        style={{ color: colors.paleSlate, opacity: 0.8 }}
-                                        onMouseEnter={(e) => {
-                                            e.currentTarget.style.color = colors.oceanDeep;
-                                            e.currentTarget.style.opacity = "1";
-                                        }}
-                                        onMouseLeave={(e) => {
-                                            e.currentTarget.style.color = colors.paleSlate;
-                                            e.currentTarget.style.opacity = "0.8";
-                                        }}
-                                    >
-                                        {link.name}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+          {/* Resources */}
+          <div>
+            <span className="ft-col-label">Resources</span>
+            {resourceLinks.map((l) => (
+              <Link key={l.name} href={l.href} className="ft-link">{l.name}</Link>
+            ))}
+          </div>
 
-                    {/* Connect With Us Column */}
-                    <div className="px-4 my-4 w-full sm:w-auto xl:w-1/4">
-                        <div className="mb-4">
-                            <h2
-                                className="inline-block text-xl font-bold pb-3 mb-2 border-b-2"
-                                style={{
-                                    color: colors.white,
-                                    borderBottomColor: colors.oceanDeep,
-                                }}
-                            >
-                                Connect With Us
-                            </h2>
-                        </div>
-                        <div className="flex flex-wrap gap-2 mb-6">
-                            {socialLinks.map((social) => (
-                                <a
-                                    key={social.name}
-                                    href={social.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center justify-center w-9 h-9 rounded-full transition-all duration-200 hover:scale-110"
-                                    style={{
-                                        border: `1px solid ${colors.paleSlate}`,
-                                        color: colors.paleSlate,
-                                    }}
-                                    onMouseEnter={(e) => {
-                                        e.currentTarget.style.borderColor = colors.oceanDeep;
-                                        e.currentTarget.style.color = colors.oceanDeep;
-                                    }}
-                                    onMouseLeave={(e) => {
-                                        e.currentTarget.style.borderColor = colors.paleSlate;
-                                        e.currentTarget.style.color = colors.paleSlate;
-                                    }}
-                                >
-                                    {social.icon}
-                                </a>
-                            ))}
-                        </div>
-                        <div>
-                            <p className="text-xs" style={{ color: colors.paleSlate, opacity: 0.6 }}>
-                                Email: info@studymap.com
-                            </p>
-                            <p className="text-xs mt-1" style={{ color: colors.paleSlate, opacity: 0.6 }}>
-                                Phone: +254 123 456 789
-                            </p>
-                        </div>
-                    </div>
-                </div>
+          {/* Contact */}
+          <div>
+            <span className="ft-col-label">Contact</span>
+            <div className="ft-contact-item">
+              <span className="ft-contact-icon">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2a8 8 0 0 1 8 8c0 5.25-8 14-8 14S4 15.25 4 10a8 8 0 0 1 8-8z" stroke="currentColor" strokeWidth="1.5" />
+                  <circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="1.5" />
+                </svg>
+              </span>
+              <div>
+                <div className="ft-contact-label">Address</div>
+                <div className="ft-contact-val">Sirgoi Plaza, Eldoret, Kenya</div>
+              </div>
             </div>
-
-            {/* Bottom Bar */}
-            <div
-                className="relative z-10 w-full py-5"
-                style={{ backgroundColor: `rgba(0, 40, 86, 0.85)`, borderTop: `1px solid ${colors.oceanDeep}20` }}
-            >
-                <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-                    <div className="flex flex-col sm:flex-row justify-between items-center gap-3 text-center sm:text-left">
-                        <p className="text-xs" style={{ color: colors.paleSlate, opacity: 0.7 }}>
-                            Copyright © {currentYear} Study Map Consultants Ltd. All rights reserved.
-                        </p>
-                        <p className="text-xs" style={{ color: colors.paleSlate, opacity: 0.7 }}>
-                            Designed with care for students worldwide.
-                        </p>
-                    </div>
-                </div>
+            <div className="ft-contact-item">
+              <span className="ft-contact-icon">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                  <path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.054-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+              <div>
+                <div className="ft-contact-label">Phone</div>
+                <a href="tel:+254724801455" className="ft-contact-val">+254 724 801 455</a>
+              </div>
             </div>
-        </footer>
-    );
+            <div className="ft-contact-item">
+              <span className="ft-contact-icon">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                  <path d="M3 8l9 6 9-6M5 5h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+              <div>
+                <div className="ft-contact-label">Email</div>
+                <a href="mailto:studymapconsultants@gmail.com" className="ft-contact-val">studymapconsultants@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom bar */}
+      <div style={{ borderTop: "1px solid rgba(255,255,255,0.05)", position: "relative", zIndex: 3 }}>
+        <div className="ft-root ft-bottom">
+          <span className="ft-copy">© {currentYear} Study Map Consultants Ltd. All rights reserved.</span>
+          <span className="ft-copy">Empowering East African students through global education.</span>
+        </div>
+      </div>
+    </footer>
+  );
 }

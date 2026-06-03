@@ -3,12 +3,12 @@ import { colors } from "./colors";
 
 export default function AboutCTA() {
   return (
-    <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-8 border-t">
+    <div className="flex flex-col sm:flex-row justify-between items-center gap-4 p-8 border-t">
       <p
         className="text-sm"
         style={{ color: colors.prussianBlue, opacity: 0.6 }}
       >
-        Interested in working with us or applying to study in Australia?
+        Interested in working with us or applying to study in Australia, New Zealand or the UK?
       </p>
       <Link
         href="/contact"

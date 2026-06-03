@@ -2,7 +2,7 @@ import { colors } from "./colors";
 
 export default function AboutHeader() {
   return (
-    <div className="relative w-full min-h-screen pt-20 flex items-center overflow-hidden mb-12">
+    <div className="relative w-full min-h-screen pt-20 flex items-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <img 
